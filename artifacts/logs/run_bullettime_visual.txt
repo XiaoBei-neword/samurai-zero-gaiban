@@ -1,0 +1,8 @@
+   场景：钉住的子弹 3 发 + 玩家在跑
+✅ 采样期间子弹仍在场  —— bullets=3
+✅ 采样期间玩家存活  —— alive=true
+✅ 截图时确实处于子弹时间  —— world=0.150 player=0.600
+   成对截图：bt_normal_a.png, bt_normal_b.png | bt_slow_a.png, bt_slow_b.png
+
+—— run_bullettime_visual：3/3 通过，耗时 6.4s
+   结果文件：artifacts/results/run_bullettime_visual.json

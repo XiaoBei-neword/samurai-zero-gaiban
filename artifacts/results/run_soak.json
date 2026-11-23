@@ -1,0 +1,1248 @@
+{
+  "name": "run_soak",
+  "passed": 10,
+  "failed": 0,
+  "total": 10,
+  "ok": true,
+  "durationMs": 607755,
+  "failures": [],
+  "rows": [
+    {
+      "ok": true,
+      "label": "持续运行 10 分钟并采样",
+      "detail": "118 次采样"
+    },
+    {
+      "ok": true,
+      "label": "结束时游戏仍在正常运行",
+      "detail": "state=playing level=3"
+    },
+    {
+      "ok": true,
+      "label": "最后 1/4 时段平均帧率仍 ≥ 58",
+      "detail": "59.9 FPS"
+    },
+    {
+      "ok": true,
+      "label": "全程最低帧率 ≥ 45",
+      "detail": "57.8 FPS"
+    },
+    {
+      "ok": true,
+      "label": "10 分钟内堆内存没有持续增长（< 24MB）",
+      "detail": "0.60MB（start 4.27 → end 4.86）"
+    },
+    {
+      "ok": true,
+      "label": "期间确实打了怪（不是空转）",
+      "detail": "kills=14 restarts=9"
+    },
+    {
+      "ok": true,
+      "label": "页面已启动 __BOOT__",
+      "detail": "backdrop=true audio=true"
+    },
+    {
+      "ok": true,
+      "label": "没有触发致命错误遮罩",
+      "detail": "fatal.style.display="
+    },
+    {
+      "ok": true,
+      "label": "游戏循环内无异常",
+      "detail": "0 条"
+    },
+    {
+      "ok": true,
+      "label": "页面无未捕获异常",
+      "detail": "0 条"
+    }
+  ],
+  "minutes": 10,
+  "samples": [
+    {
+      "t": 5,
+      "fps": 59.3,
+      "level": 1,
+      "state": "playing",
+      "kills": 3,
+      "deaths": 0,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 10,
+      "fps": 58.3,
+      "level": 2,
+      "state": "playing",
+      "kills": 5,
+      "deaths": 1,
+      "enemies": 3,
+      "heapMB": null
+    },
+    {
+      "t": 15,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 8,
+      "deaths": 2,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 20,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 8,
+      "deaths": 3,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 26,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 8,
+      "deaths": 3,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 31,
+      "fps": 59,
+      "level": 3,
+      "state": "playing",
+      "kills": 9,
+      "deaths": 3,
+      "enemies": 5,
+      "heapMB": 4.27
+    },
+    {
+      "t": 36,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 12,
+      "deaths": 4,
+      "enemies": 2,
+      "heapMB": null
+    },
+    {
+      "t": 41,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 13,
+      "deaths": 4,
+      "enemies": 1,
+      "heapMB": null
+    },
+    {
+      "t": 46,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 4,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 52,
+      "fps": 60,
+      "level": 3,
+      "state": "victory",
+      "kills": 14,
+      "deaths": 4,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 57,
+      "fps": 60,
+      "level": 1,
+      "state": "transition",
+      "kills": 3,
+      "deaths": 0,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 62,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 7,
+      "deaths": 2,
+      "enemies": 1,
+      "heapMB": 4.46
+    },
+    {
+      "t": 67,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 8,
+      "deaths": 2,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 72,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 8,
+      "deaths": 2,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 77,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 9,
+      "deaths": 2,
+      "enemies": 5,
+      "heapMB": null
+    },
+    {
+      "t": 82,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 11,
+      "deaths": 2,
+      "enemies": 3,
+      "heapMB": null
+    },
+    {
+      "t": 87,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 13,
+      "deaths": 3,
+      "enemies": 1,
+      "heapMB": null
+    },
+    {
+      "t": 92,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 3,
+      "enemies": 0,
+      "heapMB": 4.52
+    },
+    {
+      "t": 98,
+      "fps": 60,
+      "level": 3,
+      "state": "victory",
+      "kills": 14,
+      "deaths": 3,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 103,
+      "fps": 60,
+      "level": 1,
+      "state": "playing",
+      "kills": 3,
+      "deaths": 0,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 108,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 5,
+      "deaths": 1,
+      "enemies": 3,
+      "heapMB": null
+    },
+    {
+      "t": 113,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 8,
+      "deaths": 2,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 119,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 8,
+      "deaths": 2,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 124,
+      "fps": 59.3,
+      "level": 3,
+      "state": "playing",
+      "kills": 9,
+      "deaths": 2,
+      "enemies": 5,
+      "heapMB": 4.68
+    },
+    {
+      "t": 129,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 11,
+      "deaths": 2,
+      "enemies": 3,
+      "heapMB": null
+    },
+    {
+      "t": 134,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 2,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 140,
+      "fps": 60,
+      "level": 3,
+      "state": "victory",
+      "kills": 14,
+      "deaths": 2,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 145,
+      "fps": 60,
+      "level": 1,
+      "state": "playing",
+      "kills": 3,
+      "deaths": 0,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 150,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 5,
+      "deaths": 1,
+      "enemies": 3,
+      "heapMB": null
+    },
+    {
+      "t": 155,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 8,
+      "deaths": 2,
+      "enemies": 0,
+      "heapMB": 4.7
+    },
+    {
+      "t": 160,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 8,
+      "deaths": 3,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 165,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 8,
+      "deaths": 3,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 170,
+      "fps": 59.3,
+      "level": 3,
+      "state": "playing",
+      "kills": 8,
+      "deaths": 3,
+      "enemies": 6,
+      "heapMB": null
+    },
+    {
+      "t": 175,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 12,
+      "deaths": 3,
+      "enemies": 2,
+      "heapMB": null
+    },
+    {
+      "t": 180,
+      "fps": 57.8,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 4,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 185,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 5,
+      "enemies": 0,
+      "heapMB": 4.72
+    },
+    {
+      "t": 190,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 6,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 195,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 7,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 200,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 8,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 205,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 9,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 210,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 10,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 215,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 10,
+      "enemies": 0,
+      "heapMB": 4.73
+    },
+    {
+      "t": 220,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 10,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 225,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 10,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 231,
+      "fps": 60,
+      "level": 3,
+      "state": "victory",
+      "kills": 14,
+      "deaths": 10,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 236,
+      "fps": 60,
+      "level": 1,
+      "state": "playing",
+      "kills": 3,
+      "deaths": 0,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 241,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 5,
+      "deaths": 1,
+      "enemies": 3,
+      "heapMB": null
+    },
+    {
+      "t": 246,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 8,
+      "deaths": 2,
+      "enemies": 0,
+      "heapMB": 4.73
+    },
+    {
+      "t": 251,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 8,
+      "deaths": 3,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 256,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 8,
+      "deaths": 3,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 261,
+      "fps": 59.3,
+      "level": 3,
+      "state": "playing",
+      "kills": 9,
+      "deaths": 3,
+      "enemies": 5,
+      "heapMB": null
+    },
+    {
+      "t": 266,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 12,
+      "deaths": 3,
+      "enemies": 2,
+      "heapMB": null
+    },
+    {
+      "t": 271,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 13,
+      "deaths": 4,
+      "enemies": 1,
+      "heapMB": null
+    },
+    {
+      "t": 276,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 4,
+      "enemies": 0,
+      "heapMB": 4.78
+    },
+    {
+      "t": 282,
+      "fps": 60,
+      "level": 3,
+      "state": "victory",
+      "kills": 14,
+      "deaths": 4,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 287,
+      "fps": 60,
+      "level": 1,
+      "state": "playing",
+      "kills": 3,
+      "deaths": 0,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 292,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 6,
+      "deaths": 1,
+      "enemies": 2,
+      "heapMB": null
+    },
+    {
+      "t": 297,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 8,
+      "deaths": 2,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 302,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 8,
+      "deaths": 2,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 307,
+      "fps": 59,
+      "level": 3,
+      "state": "playing",
+      "kills": 9,
+      "deaths": 2,
+      "enemies": 5,
+      "heapMB": 4.91
+    },
+    {
+      "t": 312,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 10,
+      "deaths": 2,
+      "enemies": 4,
+      "heapMB": null
+    },
+    {
+      "t": 317,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 12,
+      "deaths": 3,
+      "enemies": 2,
+      "heapMB": null
+    },
+    {
+      "t": 322,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 3,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 328,
+      "fps": 60,
+      "level": 3,
+      "state": "victory",
+      "kills": 14,
+      "deaths": 3,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 333,
+      "fps": 60,
+      "level": 1,
+      "state": "playing",
+      "kills": 3,
+      "deaths": 0,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 338,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 6,
+      "deaths": 0,
+      "enemies": 2,
+      "heapMB": 4.89
+    },
+    {
+      "t": 343,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 8,
+      "deaths": 0,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 348,
+      "fps": 59.3,
+      "level": 3,
+      "state": "playing",
+      "kills": 9,
+      "deaths": 0,
+      "enemies": 5,
+      "heapMB": null
+    },
+    {
+      "t": 353,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 11,
+      "deaths": 0,
+      "enemies": 3,
+      "heapMB": null
+    },
+    {
+      "t": 358,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 13,
+      "deaths": 1,
+      "enemies": 1,
+      "heapMB": null
+    },
+    {
+      "t": 363,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 1,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 368,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 2,
+      "enemies": 0,
+      "heapMB": 4.9
+    },
+    {
+      "t": 373,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 3,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 378,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 4,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 383,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 5,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 388,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 5,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 393,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 7,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 398,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 7,
+      "enemies": 0,
+      "heapMB": 4.85
+    },
+    {
+      "t": 403,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 8,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 408,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 9,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 413,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 10,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 419,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 11,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 424,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 12,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 429,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 13,
+      "enemies": 0,
+      "heapMB": 4.86
+    },
+    {
+      "t": 434,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 14,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 439,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 15,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 444,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 16,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 449,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 16,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 454,
+      "fps": 60,
+      "level": 3,
+      "state": "victory",
+      "kills": 14,
+      "deaths": 16,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 459,
+      "fps": 60,
+      "level": 1,
+      "state": "playing",
+      "kills": 3,
+      "deaths": 0,
+      "enemies": 0,
+      "heapMB": 4.86
+    },
+    {
+      "t": 465,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 5,
+      "deaths": 1,
+      "enemies": 3,
+      "heapMB": null
+    },
+    {
+      "t": 470,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 8,
+      "deaths": 2,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 475,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 8,
+      "deaths": 2,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 480,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 10,
+      "deaths": 2,
+      "enemies": 4,
+      "heapMB": null
+    },
+    {
+      "t": 485,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 12,
+      "deaths": 2,
+      "enemies": 2,
+      "heapMB": null
+    },
+    {
+      "t": 490,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 12,
+      "deaths": 2,
+      "enemies": 2,
+      "heapMB": 4.9
+    },
+    {
+      "t": 495,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 12,
+      "deaths": 2,
+      "enemies": 2,
+      "heapMB": null
+    },
+    {
+      "t": 500,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 12,
+      "deaths": 2,
+      "enemies": 2,
+      "heapMB": null
+    },
+    {
+      "t": 505,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 13,
+      "deaths": 2,
+      "enemies": 1,
+      "heapMB": null
+    },
+    {
+      "t": 510,
+      "fps": 60,
+      "level": 3,
+      "state": "victory",
+      "kills": 14,
+      "deaths": 2,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 515,
+      "fps": 60,
+      "level": 1,
+      "state": "playing",
+      "kills": 3,
+      "deaths": 0,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 520,
+      "fps": 59.3,
+      "level": 2,
+      "state": "playing",
+      "kills": 5,
+      "deaths": 1,
+      "enemies": 3,
+      "heapMB": 4.8
+    },
+    {
+      "t": 525,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 8,
+      "deaths": 2,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 531,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 8,
+      "deaths": 2,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 536,
+      "fps": 59,
+      "level": 3,
+      "state": "playing",
+      "kills": 8,
+      "deaths": 2,
+      "enemies": 6,
+      "heapMB": null
+    },
+    {
+      "t": 541,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 10,
+      "deaths": 2,
+      "enemies": 4,
+      "heapMB": null
+    },
+    {
+      "t": 546,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 12,
+      "deaths": 3,
+      "enemies": 2,
+      "heapMB": null
+    },
+    {
+      "t": 551,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 3,
+      "enemies": 0,
+      "heapMB": 4.85
+    },
+    {
+      "t": 556,
+      "fps": 60,
+      "level": 3,
+      "state": "victory",
+      "kills": 14,
+      "deaths": 3,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 561,
+      "fps": 60,
+      "level": 1,
+      "state": "playing",
+      "kills": 3,
+      "deaths": 0,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 566,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 6,
+      "deaths": 1,
+      "enemies": 2,
+      "heapMB": null
+    },
+    {
+      "t": 571,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 8,
+      "deaths": 2,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 577,
+      "fps": 60,
+      "level": 2,
+      "state": "playing",
+      "kills": 8,
+      "deaths": 2,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 582,
+      "fps": 59,
+      "level": 3,
+      "state": "playing",
+      "kills": 9,
+      "deaths": 2,
+      "enemies": 5,
+      "heapMB": 4.92
+    },
+    {
+      "t": 587,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 12,
+      "deaths": 3,
+      "enemies": 2,
+      "heapMB": null
+    },
+    {
+      "t": 592,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 3,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 597,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 4,
+      "enemies": 0,
+      "heapMB": null
+    },
+    {
+      "t": 602,
+      "fps": 60,
+      "level": 3,
+      "state": "playing",
+      "kills": 14,
+      "deaths": 6,
+      "enemies": 0,
+      "heapMB": null
+    }
+  ],
+  "avgTail": 59.91,
+  "minFps": 57.8,
+  "restarts": 9,
+  "finalMem": 4.8634538650512695
+}

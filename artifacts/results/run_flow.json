@@ -1,0 +1,153 @@
+{
+  "name": "run_flow",
+  "passed": 23,
+  "failed": 0,
+  "total": 23,
+  "ok": true,
+  "durationMs": 173919,
+  "failures": [],
+  "rows": [
+    {
+      "ok": true,
+      "label": "A：机器人真的打到并击杀了敌人",
+      "detail": "kills=17"
+    },
+    {
+      "ok": true,
+      "label": "A：不加辅助也能打过第 1 关",
+      "detail": "到第 4 关"
+    },
+    {
+      "ok": true,
+      "label": "B：共有 4 关",
+      "detail": "count=4"
+    },
+    {
+      "ok": true,
+      "label": "B：第 1 关清版后门开启",
+      "detail": "敌人 3 → 0，门 open=0.81"
+    },
+    {
+      "ok": true,
+      "label": "B：走进门后进入第 2 关（无缝切关）",
+      "detail": "level=2 state=playing"
+    },
+    {
+      "ok": true,
+      "label": "B：第 2 关清版后门开启",
+      "detail": "敌人 5 → 0，门 open=0.93"
+    },
+    {
+      "ok": true,
+      "label": "B：走进门后进入第 3 关（无缝切关）",
+      "detail": "level=3 state=playing"
+    },
+    {
+      "ok": true,
+      "label": "B：第 3 关清版后门开启",
+      "detail": "敌人 6 → 0，门 open=0.74"
+    },
+    {
+      "ok": true,
+      "label": "B：走进门后进入第 4 关（无缝切关）",
+      "detail": "level=4 state=playing"
+    },
+    {
+      "ok": true,
+      "label": "B：第 4 关清版后门开启",
+      "detail": "敌人 6 → 0，门 open=0.74"
+    },
+    {
+      "ok": true,
+      "label": "B：打通最后一关后进入结算",
+      "detail": "state=victory level=4"
+    },
+    {
+      "ok": true,
+      "label": "B：最终处于结算状态",
+      "detail": "state=victory"
+    },
+    {
+      "ok": true,
+      "label": "B：停留在第 4 关",
+      "detail": "level=4"
+    },
+    {
+      "ok": true,
+      "label": "B：击杀数覆盖全部 20 个敌人（3+5+6+6）",
+      "detail": "kills=20"
+    },
+    {
+      "ok": true,
+      "label": "B：记录了通关总用时",
+      "detail": "1.85s"
+    },
+    {
+      "ok": true,
+      "label": "B：通关时场上没有活着的敌人",
+      "detail": "alive=0"
+    },
+    {
+      "ok": true,
+      "label": "B：结算面板数据源与统计一致",
+      "detail": "{\"victory\":true,\"deaths\":0,\"kills\":20,\"runTime\":1.85}"
+    },
+    {
+      "ok": true,
+      "label": "B：结算面板按 R 从头开始",
+      "detail": "level=1 state=playing"
+    },
+    {
+      "ok": true,
+      "label": "B：按 R 后统计清零",
+      "detail": "{\"deaths\":0,\"kills\":0,\"runTime\":0.8}"
+    },
+    {
+      "ok": true,
+      "label": "页面已启动 __BOOT__",
+      "detail": "backdrop=true audio=true"
+    },
+    {
+      "ok": true,
+      "label": "没有触发致命错误遮罩",
+      "detail": "fatal.style.display="
+    },
+    {
+      "ok": true,
+      "label": "游戏循环内无异常",
+      "detail": "0 条"
+    },
+    {
+      "ok": true,
+      "label": "页面无未捕获异常",
+      "detail": "0 条"
+    }
+  ],
+  "passA": {
+    "maxLevel": 4,
+    "state": "playing",
+    "kills": 17,
+    "deaths": 0,
+    "wallMs": 165317,
+    "levelTimes": {
+      "1": "5.7",
+      "2": "8.3",
+      "3": "8.3",
+      "4": "142.5"
+    }
+  },
+  "passB": {
+    "state": "victory",
+    "kills": 20,
+    "deaths": 0,
+    "runTime": 1.85,
+    "wallMs": 0,
+    "levelTimes": {}
+  },
+  "panel": {
+    "victory": true,
+    "deaths": 0,
+    "kills": 20,
+    "runTime": 1.85
+  }
+}

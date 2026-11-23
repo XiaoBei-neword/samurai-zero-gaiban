@@ -1,0 +1,12 @@
+✅ 音频夹具：全部音效无异常  —— {"ok":true,"errors":[]}
+✅ 音频夹具：暴露了节点统计  —— {"ctxState":"running","nodeCountEstimate":0}
+✅ 音频夹具：200 次连发后没有 AudioNode 泄漏  —— before={"ctxState":"running","nodeCountEstimate":0} after={"ctxState":"running","nodeCountEstimate":0}
+✅ 背景夹具：绘制无异常  —— {"ok":true,"seeds":[1337,2049,4242],"drawMsAvg":0.7849999998385707,"buildMs":34.30000000074506,"layers":6,"drawMsLast":0.5,"drawMsBurst":0.22499999990686775,"drawMsRaf":0.7849999998385707,"seed":1337,"width":1920,"camX":640,"slow":0,"flash":0,"framesMeasured":60,"auto":true,"source":"raf","error":null,"ua":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessCh
+✅ 背景夹具：单帧 draw 耗时 < 4ms  —— 0.7849999998385707 ms
+   📷 fixture_backdrop_level1.png  draw=0.8966666666790843ms
+   📷 fixture_backdrop_level2.png  draw=0.6466666666790843ms
+   📷 fixture_backdrop_level3.png  draw=0.7300000001986822ms
+✅ 两个夹具页均无 console 错误/异常  —— []
+
+—— fixtures：6/6 通过，耗时 36.4s
+   结果文件：artifacts/results/fixtures.json

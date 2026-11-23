@@ -1,0 +1,124 @@
+{
+  "name": "run_shots",
+  "passed": 23,
+  "failed": 0,
+  "total": 23,
+  "ok": true,
+  "durationMs": 22714,
+  "failures": [],
+  "rows": [
+    {
+      "ok": true,
+      "label": "启动后直接进入第 1 关（无主菜单）",
+      "detail": "level=1 霓虹码头"
+    },
+    {
+      "ok": true,
+      "label": "页面里没有任何菜单 DOM"
+    },
+    {
+      "ok": true,
+      "label": "按住 D 向右移动",
+      "detail": "x 130 → 242.08"
+    },
+    {
+      "ok": true,
+      "label": "浪人发现玩家并进入战斗状态",
+      "detail": "[\"ronin@692:chase\",\"ronin@1101:patrol\",\"gunner@1118:patrol\"]"
+    },
+    {
+      "ok": true,
+      "label": "按住鼠标中键进入时间减缓",
+      "detail": "world=0.152 player=0.601"
+    },
+    {
+      "ok": true,
+      "label": "世界时间缩放 ≈ 0.15",
+      "detail": "0.15156781165061015（期望 0.15 ±0.02）"
+    },
+    {
+      "ok": true,
+      "label": "玩家时间缩放 ≈ 0.60",
+      "detail": "0.6007377937179342（期望 0.6 ±0.02）"
+    },
+    {
+      "ok": true,
+      "label": "玩家相对时间优势 ≈ 4 倍",
+      "detail": "3.9634918996042385（期望 4 ±0.3）"
+    },
+    {
+      "ok": true,
+      "label": "敌方子弹在飞",
+      "detail": "{\"enemyBullets\":1,\"playerBullets\":0,\"thrown\":0,\"deflected\":0,\"total\":1}"
+    },
+    {
+      "ok": true,
+      "label": "近战把子弹反弹了回去（归属翻转）",
+      "detail": "{\"enemyBullets\":0,\"playerBullets\":1,\"thrown\":0,\"deflected\":1,\"total\":1}"
+    },
+    {
+      "ok": true,
+      "label": "劈砍命中并击杀敌人",
+      "detail": "kills 0 → 1"
+    },
+    {
+      "ok": true,
+      "label": "尸体留在场景里",
+      "detail": "corpses=1"
+    },
+    {
+      "ok": true,
+      "label": "清版后门自动开启",
+      "detail": "cleared=true open=1"
+    },
+    {
+      "ok": true,
+      "label": "第 4 关后进入结算状态",
+      "detail": "{\"deaths\":0,\"kills\":10,\"runTime\":5.32}"
+    },
+    {
+      "ok": true,
+      "label": "结算面板按 R 从头开始（统计清零、回到第 1 关）",
+      "detail": "{\"level\":1,\"state\":\"playing\",\"stats\":{\"deaths\":0,\"kills\":0,\"runTime\":0.48}}"
+    },
+    {
+      "ok": true,
+      "label": "死亡后进入「任务失败」状态（不立刻重生）",
+      "detail": "state=death"
+    },
+    {
+      "ok": true,
+      "label": "「任务失败」约 2 秒后自动重置回可玩状态",
+      "detail": "state=playing deaths=1"
+    },
+    {
+      "ok": true,
+      "label": "ESC 暂停生效",
+      "detail": "paused=true"
+    },
+    {
+      "ok": true,
+      "label": "再按 ESC 继续游戏"
+    },
+    {
+      "ok": true,
+      "label": "页面已启动 __BOOT__",
+      "detail": "backdrop=true audio=true"
+    },
+    {
+      "ok": true,
+      "label": "没有触发致命错误遮罩",
+      "detail": "fatal.style.display="
+    },
+    {
+      "ok": true,
+      "label": "游戏循环内无异常",
+      "detail": "0 条"
+    },
+    {
+      "ok": true,
+      "label": "页面无未捕获异常",
+      "detail": "0 条"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>武士零 · 丐版</title>
+<style>
+  html, body {
+    margin: 0; padding: 0; height: 100%; width: 100%;
+    background: #04030a; overflow: hidden;
+    cursor: none;
+    font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif;
+  }
+  #stage {
+    position: fixed; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: #04030a;
+  }
+  /* 内部分辨率固定 1280x720，由 JS 按 16:9 信箱式缩放到窗口 */
+  #game {
+    display: block;
+    background: #04030a;
+    box-shadow: 0 0 90px rgba(96, 40, 180, 0.30);
+    image-rendering: auto;
+  }
+  #fatal {
+    position: fixed; inset: 0; display: none;
+    color: #ff5c8a; background: rgba(8, 2, 10, 0.96);
+    padding: 40px; font-size: 15px; line-height: 1.7;
+    white-space: pre-wrap; cursor: default; z-index: 99;
+    font-family: Consolas, monospace;
+  }
+</style>
+</head>
+<body>
+  <div id="stage"><canvas id="game" width="1280" height="720"></canvas></div>
+  <pre id="fatal"></pre>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

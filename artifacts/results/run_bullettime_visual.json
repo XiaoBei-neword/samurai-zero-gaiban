@@ -1,0 +1,41 @@
+{
+  "name": "run_bullettime_visual",
+  "passed": 3,
+  "failed": 0,
+  "total": 3,
+  "ok": true,
+  "durationMs": 6402,
+  "failures": [],
+  "rows": [
+    {
+      "ok": true,
+      "label": "采样期间子弹仍在场",
+      "detail": "bullets=3"
+    },
+    {
+      "ok": true,
+      "label": "采样期间玩家存活",
+      "detail": "alive=true"
+    },
+    {
+      "ok": true,
+      "label": "截图时确实处于子弹时间",
+      "detail": "world=0.150 player=0.600"
+    }
+  ],
+  "normal": [
+    "artifacts/screenshots/bt_normal_a.png",
+    "artifacts/screenshots/bt_normal_b.png"
+  ],
+  "slow": [
+    "artifacts/screenshots/bt_slow_a.png",
+    "artifacts/screenshots/bt_slow_b.png"
+  ],
+  "scales": {
+    "world": 0.15,
+    "player": 0.6,
+    "ratio": 4,
+    "slowBlend": 0.9999999890976308,
+    "slowActive": true
+  }
+}

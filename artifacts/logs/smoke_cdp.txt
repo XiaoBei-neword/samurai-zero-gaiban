@@ -1,0 +1,49 @@
+========================================
+CDP 端到端自检（零依赖，Microsoft Edge）
+启动时间：2026-11-22T08:15:55.449Z
+Node：v24.22.1  平台：win32/x64
+项目根目录：C:\Users\shanxin\Desktop\游戏开发\实例\武士零-丐版-deepseekv4.1flash 1017
+模式：headless（--headless=new）
+========================================
+夹具服务器：http://127.0.0.1:61747/cdp_fixture.html
+浏览器已就绪：Edg/158.0.4370.33
+
+[测试] 1. 页面加载、canvas 尺寸与 FPS
+✅ 1. 页面加载、canvas 尺寸与 FPS — canvas=1280x720, DPR=1, FPS=60, frames=86, title="CDP Fixture #92"
+
+[测试] 2. eval 往返、waitFor 正常与超时
+✅ 2. eval 往返、waitFor 正常与超时 — eval 往返正常；waitFor 正常；“永不满足”条件在 318ms 后抛出预期错误
+
+[测试] 3. 键盘 press / keyDownMany / keyUpMany
+✅ 3. 键盘 press / keyDownMany / keyUpMany — keydown=["KeyJ","KeyA","ShiftLeft"]；keyup 均已记录且松开后不再新增
+
+[测试] 4. 鼠标移动与中键按下/松开
+✅ 4. 鼠标移动与中键按下/松开 — mousedown/mouseup 的 DOM button 均为 1，坐标 (640, 360)
+
+[测试] 5. PNG 截图落盘
+✅ 5. PNG 截图落盘 — artifacts\screenshots\smoke_cdp.png，600548 bytes，PNG 签名有效
+
+[测试] 6. Performance metrics 与 JSHeapUsedSize
+✅ 6. Performance metrics 与 JSHeapUsedSize — JSHeapUsedSize=1.12 MiB，Nodes=226，LayoutCount=1
+
+[测试] 7. console.error 与未捕获异常捕获
+✅ 7. console.error 与未捕获异常捕获 — console 命中 1 条，exception 命中 1 条；sink 同步收到
+
+[测试] 8. 连续 200 次 eval 延迟
+✅ 8. 连续 200 次 eval 延迟 — 平均 2.181 ms/次，P50 0.847 ms，P95 11.068 ms，总耗时 436.2 ms
+
+[页面状态] console=1，exception=1，log=0，dialog=0
+  console.error: SMOKE_CONSOLE_ERROR Object
+  exception: Error: SMOKE_UNCAUGHT_ERROR
+
+[清理] 关闭页面、浏览器进程、静态服务器并清理临时 profile ...
+[清理] 完成
+
+========================================
+自检结果：8/8 通过
+200 次 eval 平均延迟：2.181 ms（P50 0.847 ms / P95 11.068 ms / 最大 23.423 ms）
+截图：artifacts\screenshots\smoke_cdp.png（600548 bytes，1280x720）
+结果：PASS
+JSON：artifacts\logs\smoke_cdp.json
+日志：artifacts\logs\smoke_cdp.log
+========================================

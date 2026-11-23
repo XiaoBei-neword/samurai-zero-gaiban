@@ -1,0 +1,3 @@
+[1121/183407.458:ERROR:third_party\crashpad\crashpad\client\crashpad_client_win.cc:457] OpenProcess: 拒绝访问。 (0x5)
+[1121/183407.498:ERROR:third_party\crashpad\crashpad\util\file\file_io_win.cc:191] CreateFile C:\Users\shanxin\AppData\Local\Microsoft\Edge\User Data\Crashpad\throttle_store.dat: 拒绝访问。 (0x5)
+[1121/183407.638:ERROR:chrome\app\chrome_main.cc:321] Multiple targets are not supported in headless mode.

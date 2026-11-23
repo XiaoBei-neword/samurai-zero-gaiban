@@ -1,0 +1,405 @@
+{
+  "ok": true,
+  "mode": "headless",
+  "startedAt": "2026-11-22T08:15:55.449Z",
+  "finishedAt": "2026-11-22T08:16:03.968Z",
+  "durationMs": 8519,
+  "environment": {
+    "node": "v24.22.1",
+    "platform": "win32",
+    "arch": "x64",
+    "cwd": "C:\\Users\\shanxin\\Desktop\\游戏开发\\实例\\武士零-丐版-deepseekv4.1flash 1017",
+    "projectRoot": "C:\\Users\\shanxin\\Desktop\\游戏开发\\实例\\武士零-丐版-deepseekv4.1flash 1017"
+  },
+  "fixtureUrl": "http://127.0.0.1:61747/cdp_fixture.html",
+  "browser": {
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/158.0.0.0 Safari/537.36 Edg/158.0.0.0"
+  },
+  "summary": {
+    "expectedTests": 8,
+    "executedTests": 8,
+    "passed": 8,
+    "failed": 0,
+    "cleanupFailed": false,
+    "fatal": false
+  },
+  "tests": [
+    {
+      "name": "1. 页面加载、canvas 尺寸与 FPS",
+      "ok": true,
+      "detail": "canvas=1280x720, DPR=1, FPS=60, frames=86, title=\"CDP Fixture #92\"",
+      "durationMs": 2651.9
+    },
+    {
+      "name": "2. eval 往返、waitFor 正常与超时",
+      "ok": true,
+      "detail": "eval 往返正常；waitFor 正常；“永不满足”条件在 318ms 后抛出预期错误",
+      "durationMs": 605.4
+    },
+    {
+      "name": "3. 键盘 press / keyDownMany / keyUpMany",
+      "ok": true,
+      "detail": "keydown=[\"KeyJ\",\"KeyA\",\"ShiftLeft\"]；keyup 均已记录且松开后不再新增",
+      "durationMs": 209.8
+    },
+    {
+      "name": "4. 鼠标移动与中键按下/松开",
+      "ok": true,
+      "detail": "mousedown/mouseup 的 DOM button 均为 1，坐标 (640, 360)",
+      "durationMs": 55.7
+    },
+    {
+      "name": "5. PNG 截图落盘",
+      "ok": true,
+      "detail": "artifacts\\screenshots\\smoke_cdp.png，600548 bytes，PNG 签名有效",
+      "durationMs": 691.8
+    },
+    {
+      "name": "6. Performance metrics 与 JSHeapUsedSize",
+      "ok": true,
+      "detail": "JSHeapUsedSize=1.12 MiB，Nodes=226，LayoutCount=1",
+      "durationMs": 70.3
+    },
+    {
+      "name": "7. console.error 与未捕获异常捕获",
+      "ok": true,
+      "detail": "console 命中 1 条，exception 命中 1 条；sink 同步收到",
+      "durationMs": 136.3
+    },
+    {
+      "name": "8. 连续 200 次 eval 延迟",
+      "ok": true,
+      "detail": "平均 2.181 ms/次，P50 0.847 ms，P95 11.068 ms，总耗时 436.2 ms",
+      "durationMs": 751.6
+    }
+  ],
+  "evalLatency": {
+    "count": 200,
+    "totalMs": 436.178,
+    "avgMs": 2.181,
+    "minMs": 0.43,
+    "maxMs": 23.423,
+    "p50Ms": 0.847,
+    "p95Ms": 11.068,
+    "durationsMs": [
+      0.798,
+      3.871,
+      9.401,
+      1.422,
+      0.853,
+      0.907,
+      0.814,
+      1.543,
+      0.955,
+      4.712,
+      23.423,
+      0.927,
+      0.806,
+      0.91,
+      0.901,
+      0.717,
+      0.658,
+      0.738,
+      12.078,
+      1.642,
+      2.103,
+      0.749,
+      8.136,
+      1.699,
+      0.9,
+      0.843,
+      0.766,
+      0.802,
+      0.656,
+      0.729,
+      0.691,
+      1.103,
+      11.596,
+      1.978,
+      0.659,
+      0.671,
+      0.719,
+      0.593,
+      8.119,
+      1.055,
+      0.812,
+      0.876,
+      0.593,
+      0.541,
+      0.653,
+      0.847,
+      0.583,
+      0.535,
+      0.752,
+      1.125,
+      0.689,
+      8.446,
+      2.287,
+      0.907,
+      0.813,
+      3.133,
+      6.909,
+      2.904,
+      0.829,
+      1.267,
+      0.688,
+      0.808,
+      4.512,
+      12.035,
+      0.799,
+      0.687,
+      0.826,
+      1.546,
+      0.838,
+      9.207,
+      1.104,
+      0.939,
+      0.729,
+      0.556,
+      0.542,
+      0.539,
+      0.517,
+      0.49,
+      0.43,
+      0.472,
+      0.755,
+      9.326,
+      2.769,
+      0.979,
+      0.799,
+      0.679,
+      0.59,
+      0.651,
+      0.551,
+      3.399,
+      7.426,
+      1.06,
+      0.725,
+      0.725,
+      0.632,
+      0.609,
+      0.531,
+      0.935,
+      11.202,
+      1.638,
+      0.834,
+      0.642,
+      0.652,
+      0.688,
+      0.668,
+      0.759,
+      0.684,
+      11.77,
+      1.781,
+      0.862,
+      1.025,
+      0.677,
+      0.593,
+      9.595,
+      0.944,
+      0.82,
+      0.748,
+      0.581,
+      0.911,
+      0.755,
+      0.645,
+      0.572,
+      0.527,
+      0.498,
+      9.699,
+      1.062,
+      0.907,
+      0.946,
+      0.558,
+      1.715,
+      0.773,
+      0.69,
+      6.603,
+      2.182,
+      1.008,
+      1.002,
+      0.757,
+      0.711,
+      0.699,
+      0.638,
+      0.594,
+      1.343,
+      0.939,
+      11.723,
+      2.184,
+      1.209,
+      1.128,
+      0.896,
+      11.068,
+      1.111,
+      0.744,
+      1,
+      0.924,
+      0.898,
+      0.795,
+      9.308,
+      1.081,
+      0.85,
+      0.904,
+      0.954,
+      1.363,
+      0.974,
+      0.764,
+      7.513,
+      6.885,
+      0.846,
+      0.737,
+      0.682,
+      0.651,
+      11.296,
+      0.742,
+      0.913,
+      0.906,
+      0.628,
+      0.526,
+      0.724,
+      5.171,
+      5.48,
+      1.376,
+      1.055,
+      0.889,
+      0.673,
+      0.661,
+      0.785,
+      1.263,
+      8.339,
+      1.401,
+      1.018,
+      0.991,
+      0.824,
+      0.783,
+      0.795,
+      0.653,
+      0.661,
+      0.579,
+      0.631,
+      12.37,
+      1.335,
+      0.717,
+      0.66
+    ]
+  },
+  "screenshot": {
+    "path": "C:\\Users\\shanxin\\Desktop\\游戏开发\\实例\\武士零-丐版-deepseekv4.1flash 1017\\artifacts\\screenshots\\smoke_cdp.png",
+    "bytes": 600548,
+    "width": 1280,
+    "height": 720
+  },
+  "metrics": {
+    "JSHeapUsedSize": 1179540,
+    "Nodes": 226,
+    "LayoutCount": 1,
+    "RecalcStyleCount": 4
+  },
+  "consoleSink": {
+    "count": 2,
+    "events": [
+      {
+        "kind": "console",
+        "text": "[error] SMOKE_CONSOLE_ERROR Object",
+        "time": 1795335362538
+      },
+      {
+        "kind": "exception",
+        "text": "Error: SMOKE_UNCAUGHT_ERROR\n    at <anonymous>:1:26",
+        "time": 1795335362632
+      }
+    ]
+  },
+  "pageState": {
+    "consoles": [
+      {
+        "kind": "console",
+        "type": "error",
+        "text": "SMOKE_CONSOLE_ERROR Object",
+        "time": 1795335362538,
+        "args": [
+          {
+            "type": "string",
+            "value": "SMOKE_CONSOLE_ERROR"
+          },
+          {
+            "type": "object",
+            "className": "Object",
+            "description": "Object",
+            "objectId": "-7709926321283910901.2.1",
+            "preview": {
+              "type": "object",
+              "description": "Object",
+              "overflow": false,
+              "properties": [
+                {
+                  "name": "marker",
+                  "type": "number",
+                  "value": "4242"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "exceptions": [
+      {
+        "kind": "exception",
+        "text": "Error: SMOKE_UNCAUGHT_ERROR\n    at <anonymous>:1:26",
+        "url": "",
+        "lineNumber": 0,
+        "columnNumber": 25,
+        "time": 1795335362632,
+        "details": {
+          "exceptionId": 1,
+          "text": "Uncaught",
+          "lineNumber": 0,
+          "columnNumber": 25,
+          "scriptId": "21",
+          "stackTrace": {
+            "callFrames": [
+              {
+                "functionName": "",
+                "scriptId": "21",
+                "url": "",
+                "lineNumber": 0,
+                "columnNumber": 25
+              }
+            ]
+          },
+          "exception": {
+            "type": "object",
+            "subtype": "error",
+            "className": "Error",
+            "description": "Error: SMOKE_UNCAUGHT_ERROR\n    at <anonymous>:1:26",
+            "objectId": "-7709926321283910901.2.2",
+            "preview": {
+              "type": "object",
+              "subtype": "error",
+              "description": "Error: SMOKE_UNCAUGHT_ERROR\n    at <anonymous>:1:26",
+              "overflow": false,
+              "properties": [
+                {
+                  "name": "stack",
+                  "type": "string",
+                  "value": "Error: SMOKE_UNCAUGHT_ERROR\n    at <anonymous>:1:26"
+                },
+                {
+                  "name": "message",
+                  "type": "string",
+                  "value": "SMOKE_UNCAUGHT_ERROR"
+                }
+              ]
+            }
+          },
+          "executionContextId": 2
+        }
+      }
+    ],
+    "logs": [],
+    "dialogs": []
+  },
+  "fatalError": null
+}

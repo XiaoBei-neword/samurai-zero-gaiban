@@ -1,0 +1,432 @@
+{
+  "results": [
+    {
+      "case": "seed1_cam0",
+      "url": "http://127.0.0.1:8143/tests/fixtures/backdrop_check.html?auto=1&seed=1&cam=0&frames=90",
+      "elapsedMs": 2867,
+      "bytes": 599955,
+      "shot": "C:\\Users\\shanxin\\Desktop\\游戏开发\\实例\\武士零-丐版-deepseekv4.1flash 1017\\artifacts\\screenshots\\backdrop\\seed1_cam0.png",
+      "luma": {
+        "avg": 0.07171064220111492,
+        "max": 0.7016909803921569,
+        "blackFrac": 0,
+        "dark2Frac": 0.0007877604166666666,
+        "brightFrac": 0.0009993489583333334
+      },
+      "exceptions": [],
+      "info": {
+        "ok": true,
+        "seeds": [
+          1,
+          2,
+          3
+        ],
+        "drawMsAvg": 1,
+        "buildMs": 25.5,
+        "layers": 6,
+        "drawMsLast": 0.8000000007450581,
+        "drawMsBurst": 0.30499999998137356,
+        "drawMsRaf": 1,
+        "seed": 1,
+        "width": 1920,
+        "camX": 0,
+        "slow": 0,
+        "flash": 0,
+        "framesMeasured": 90,
+        "auto": true,
+        "source": "raf",
+        "error": null,
+        "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36 Edg/157.0.0.0"
+      }
+    },
+    {
+      "case": "seed1_cam640",
+      "url": "http://127.0.0.1:8143/tests/fixtures/backdrop_check.html?auto=1&seed=1&cam=640&frames=90",
+      "elapsedMs": 2217,
+      "bytes": 634487,
+      "shot": "C:\\Users\\shanxin\\Desktop\\游戏开发\\实例\\武士零-丐版-deepseekv4.1flash 1017\\artifacts\\screenshots\\backdrop\\seed1_cam640.png",
+      "luma": {
+        "avg": 0.07259111984105428,
+        "max": 0.6761905882352942,
+        "blackFrac": 0,
+        "dark2Frac": 0.0005848524305555556,
+        "brightFrac": 0.0006325954861111111
+      },
+      "exceptions": [],
+      "info": {
+        "ok": true,
+        "seeds": [
+          1,
+          2,
+          3
+        ],
+        "drawMsAvg": 0.8911111111028327,
+        "buildMs": 15.399999998509884,
+        "layers": 6,
+        "drawMsLast": 0.6000000014901161,
+        "drawMsBurst": 0.28250000001862646,
+        "drawMsRaf": 0.8911111111028327,
+        "seed": 1,
+        "width": 1920,
+        "camX": 640,
+        "slow": 0,
+        "flash": 0,
+        "framesMeasured": 90,
+        "auto": true,
+        "source": "raf",
+        "error": null,
+        "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36 Edg/157.0.0.0"
+      }
+    },
+    {
+      "case": "seed2_cam800",
+      "url": "http://127.0.0.1:8143/tests/fixtures/backdrop_check.html?auto=1&seed=2&cam=800&frames=90",
+      "elapsedMs": 2174,
+      "bytes": 553958,
+      "shot": "C:\\Users\\shanxin\\Desktop\\游戏开发\\实例\\武士零-丐版-deepseekv4.1flash 1017\\artifacts\\screenshots\\backdrop\\seed2_cam800.png",
+      "luma": {
+        "avg": 0.0672657135050261,
+        "max": 0.697841568627451,
+        "blackFrac": 0,
+        "dark2Frac": 0.0007367621527777778,
+        "brightFrac": 0.0018858506944444443
+      },
+      "exceptions": [],
+      "info": {
+        "ok": true,
+        "seeds": [
+          1,
+          2,
+          3
+        ],
+        "drawMsAvg": 0.8644444444113307,
+        "buildMs": 21.800000000745058,
+        "layers": 6,
+        "drawMsLast": 0.4000000022351742,
+        "drawMsBurst": 0.1925000000745058,
+        "drawMsRaf": 0.8644444444113307,
+        "seed": 2,
+        "width": 2560,
+        "camX": 800,
+        "slow": 0,
+        "flash": 0,
+        "framesMeasured": 90,
+        "auto": true,
+        "source": "raf",
+        "error": null,
+        "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36 Edg/157.0.0.0"
+      }
+    },
+    {
+      "case": "seed2_cam1280",
+      "url": "http://127.0.0.1:8143/tests/fixtures/backdrop_check.html?auto=1&seed=2&cam=1280&frames=90",
+      "elapsedMs": 2122,
+      "bytes": 537723,
+      "shot": "C:\\Users\\shanxin\\Desktop\\游戏开发\\实例\\武士零-丐版-deepseekv4.1flash 1017\\artifacts\\screenshots\\backdrop\\seed2_cam1280.png",
+      "luma": {
+        "avg": 0.06625892463658596,
+        "max": 0.7086533333333332,
+        "blackFrac": 0,
+        "dark2Frac": 0.0012684461805555556,
+        "brightFrac": 0.0019346788194444444
+      },
+      "exceptions": [],
+      "info": {
+        "ok": true,
+        "seeds": [
+          1,
+          2,
+          3
+        ],
+        "drawMsAvg": 0.8144444444527229,
+        "buildMs": 19.199999999254942,
+        "layers": 6,
+        "drawMsLast": 0.4000000022351742,
+        "drawMsBurst": 0.26000000005587937,
+        "drawMsRaf": 0.8144444444527229,
+        "seed": 2,
+        "width": 2560,
+        "camX": 1280,
+        "slow": 0,
+        "flash": 0,
+        "framesMeasured": 90,
+        "auto": true,
+        "source": "raf",
+        "error": null,
+        "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36 Edg/157.0.0.0"
+      }
+    },
+    {
+      "case": "seed3_cam960",
+      "url": "http://127.0.0.1:8143/tests/fixtures/backdrop_check.html?auto=1&seed=3&cam=960&frames=90",
+      "elapsedMs": 1943,
+      "bytes": 457050,
+      "shot": "C:\\Users\\shanxin\\Desktop\\游戏开发\\实例\\武士零-丐版-deepseekv4.1flash 1017\\artifacts\\screenshots\\backdrop\\seed3_cam960.png",
+      "luma": {
+        "avg": 0.06138666074002718,
+        "max": 0.5899364705882353,
+        "blackFrac": 0,
+        "dark2Frac": 0.0005598958333333334,
+        "brightFrac": 0.00028211805555555553
+      },
+      "exceptions": [],
+      "info": {
+        "ok": true,
+        "seeds": [
+          1,
+          2,
+          3
+        ],
+        "drawMsAvg": 0.7755555555224418,
+        "buildMs": 13.699999999254942,
+        "layers": 6,
+        "drawMsLast": 0.6000000014901161,
+        "drawMsBurst": 0.2849999999627471,
+        "drawMsRaf": 0.7755555555224418,
+        "seed": 3,
+        "width": 2240,
+        "camX": 960,
+        "slow": 0,
+        "flash": 0,
+        "framesMeasured": 90,
+        "auto": true,
+        "source": "raf",
+        "error": null,
+        "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36 Edg/157.0.0.0"
+      }
+    },
+    {
+      "case": "seed3_slow1",
+      "url": "http://127.0.0.1:8143/tests/fixtures/backdrop_check.html?auto=1&seed=3&cam=1120&frames=60&slow=1",
+      "elapsedMs": 1372,
+      "bytes": 398865,
+      "shot": "C:\\Users\\shanxin\\Desktop\\游戏开发\\实例\\武士零-丐版-deepseekv4.1flash 1017\\artifacts\\screenshots\\backdrop\\seed3_slow1.png",
+      "luma": {
+        "avg": 0.07908515879964186,
+        "max": 0.5756894117647059,
+        "blackFrac": 0,
+        "dark2Frac": 0,
+        "brightFrac": 0.00026584201388888887
+      },
+      "exceptions": [],
+      "info": {
+        "ok": true,
+        "seeds": [
+          1,
+          2,
+          3
+        ],
+        "drawMsAvg": 0.8649999996647239,
+        "buildMs": 14.399999998509884,
+        "layers": 6,
+        "drawMsLast": 0.5,
+        "drawMsBurst": 0.1699999999254942,
+        "drawMsRaf": 0.8649999996647239,
+        "seed": 3,
+        "width": 2240,
+        "camX": 960,
+        "slow": 1,
+        "flash": 0,
+        "framesMeasured": 60,
+        "auto": true,
+        "source": "raf",
+        "error": null,
+        "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36 Edg/157.0.0.0"
+      }
+    },
+    {
+      "case": "seed1_flash",
+      "url": "http://127.0.0.1:8143/tests/fixtures/backdrop_check.html?auto=1&seed=1&cam=320&frames=40&flash=1",
+      "elapsedMs": 1318,
+      "bytes": 625740,
+      "shot": "C:\\Users\\shanxin\\Desktop\\游戏开发\\实例\\武士零-丐版-deepseekv4.1flash 1017\\artifacts\\screenshots\\backdrop\\seed1_flash.png",
+      "luma": {
+        "avg": 0.7745630558908683,
+        "max": 0.9999999999999999,
+        "blackFrac": 0,
+        "dark2Frac": 0,
+        "brightFrac": 1
+      },
+      "exceptions": [],
+      "info": {
+        "ok": true,
+        "seeds": [
+          1,
+          2,
+          3
+        ],
+        "drawMsAvg": 0.7874999995343387,
+        "buildMs": 19.900000002235174,
+        "layers": 6,
+        "drawMsLast": 1.300000000745058,
+        "drawMsBurst": 0.3724999999627471,
+        "drawMsRaf": 0.7874999995343387,
+        "seed": 1,
+        "width": 1920,
+        "camX": 320,
+        "slow": 0,
+        "flash": 1,
+        "framesMeasured": 40,
+        "auto": true,
+        "source": "raf",
+        "error": null,
+        "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36 Edg/157.0.0.0"
+      }
+    },
+    {
+      "case": "seed1_vertical",
+      "url": "http://127.0.0.1:8143/tests/fixtures/backdrop_check.html?auto=1&seed=1&cam=320&frames=40&y=40",
+      "elapsedMs": 1223,
+      "bytes": 626719,
+      "shot": "C:\\Users\\shanxin\\Desktop\\游戏开发\\实例\\武士零-丐版-deepseekv4.1flash 1017\\artifacts\\screenshots\\backdrop\\seed1_vertical.png",
+      "luma": {
+        "avg": 0.07290525337604489,
+        "max": 0.7470196078431373,
+        "blackFrac": 0,
+        "dark2Frac": 0.0005533854166666667,
+        "brightFrac": 0.0018923611111111112
+      },
+      "exceptions": [],
+      "info": {
+        "ok": true,
+        "seeds": [
+          1,
+          2,
+          3
+        ],
+        "drawMsAvg": 0.8450000002980232,
+        "buildMs": 15.800000000745058,
+        "layers": 6,
+        "drawMsLast": 0.7000000029802322,
+        "drawMsBurst": 0.19249999998137354,
+        "drawMsRaf": 0.8450000002980232,
+        "seed": 1,
+        "width": 1920,
+        "camX": 320,
+        "slow": 0,
+        "flash": 0,
+        "framesMeasured": 40,
+        "auto": true,
+        "source": "raf",
+        "error": null,
+        "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36 Edg/157.0.0.0"
+      }
+    },
+    {
+      "case": "determinism",
+      "info": {
+        "sameSeedEqual": true,
+        "differentSeedDiffers": true,
+        "a": {
+          "hash": 2670126589,
+          "sum": 295518568,
+          "layers": 6,
+          "buildMs": 16.300000000745058,
+          "drawMsAvg": 3.699999999254942
+        },
+        "b": {
+          "hash": 2670126589,
+          "sum": 295518568,
+          "layers": 6,
+          "buildMs": 10.299999997019768,
+          "drawMsAvg": 0.8000000007450581
+        },
+        "other": {
+          "hash": 2940196149,
+          "sum": 282246348,
+          "layers": 6,
+          "buildMs": 10.900000002235174,
+          "drawMsAvg": 8.399999998509884
+        },
+        "paletteOk": true,
+        "paletteErr": null,
+        "fractionalCamOk": true
+      }
+    },
+    {
+      "case": "timing_slow_0",
+      "info": {
+        "slow": 0,
+        "samples": [
+          0.2,
+          0.20874999999068677,
+          0.43624999998137354,
+          0.47374999998137357,
+          0.5850000000093132
+        ],
+        "stats": {
+          "layers": 6,
+          "buildMs": 15.699999999254942,
+          "drawMsLast": 0.6000000014901161,
+          "drawMsAvg": 0.47999999995032944
+        }
+      }
+    },
+    {
+      "case": "timing_slow_0.5",
+      "info": {
+        "slow": 0.5,
+        "samples": [
+          0.5825000000186265,
+          0.42625000001862645,
+          0.725,
+          0.6237499999813736,
+          0.9575000000651925
+        ],
+        "stats": {
+          "layers": 6,
+          "buildMs": 15.699999999254942,
+          "drawMsLast": 0.5,
+          "drawMsAvg": 0.7166666667287548
+        }
+      }
+    },
+    {
+      "case": "timing_slow_1",
+      "info": {
+        "slow": 1,
+        "samples": [
+          0.8662500000093132,
+          0.7049999999813735,
+          0.7049999999813735,
+          0.6950000000186265,
+          1.18125
+        ],
+        "stats": {
+          "layers": 6,
+          "buildMs": 15.699999999254942,
+          "drawMsLast": 1.699999999254942,
+          "drawMsAvg": 1.084999999900659
+        }
+      }
+    }
+  ],
+  "det": {
+    "sameSeedEqual": true,
+    "differentSeedDiffers": true,
+    "a": {
+      "hash": 2670126589,
+      "sum": 295518568,
+      "layers": 6,
+      "buildMs": 16.300000000745058,
+      "drawMsAvg": 3.699999999254942
+    },
+    "b": {
+      "hash": 2670126589,
+      "sum": 295518568,
+      "layers": 6,
+      "buildMs": 10.299999997019768,
+      "drawMsAvg": 0.8000000007450581
+    },
+    "other": {
+      "hash": 2940196149,
+      "sum": 282246348,
+      "layers": 6,
+      "buildMs": 10.900000002235174,
+      "drawMsAvg": 8.399999998509884
+    },
+    "paletteOk": true,
+    "paletteErr": null,
+    "fractionalCamOk": true
+  }
+}

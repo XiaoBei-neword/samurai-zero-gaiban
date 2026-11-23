@@ -1,0 +1,25 @@
+✅ 页面里有 window.gc（可做公平的堆对比）  —— function
+   40 次死亡重置：p50=2015.9ms p95=2018.4ms max=2255.5ms（总 80.7s）
+✅ 死亡次数统计准确（40 次）  —— 40（期望 40 ±1）
+✅ 每次死亡都恰好 +1（没有漏计/重复计）
+✅ 重置延迟符合设计（约 2 秒「任务失败」后再重置）  —— 2015.8999999985099（期望 2000 ±260）
+✅ 重置延迟 P95 < 2.6s  —— p95=2018.4ms
+✅ 40 次之后玩家仍然可操作  —— alive=true
+✅ 重试不会跳到别的关卡  —— level=1
+   堆内存：2.79MB → 3.02MB（变化 0.23MB）
+   池状态：{"particles":{"alive":0,"persist":0,"max":3200},"projectiles":{"enemyBullets":0,"playerBullets":0,"thrown":0,"deflected":0,"total":0},"enemies":6,"corpses":0,"decals":0,"fx":0}
+✅ 80 次死亡后堆内存没有明显增长（< 8MB）  —— 0.23MB
+✅ 粒子池没有爆掉  —— {"alive":0,"persist":0,"max":3200}
+✅ 子弹池没有爆掉  —— {"enemyBullets":0,"playerBullets":0,"thrown":0,"deflected":0,"total":0}
+✅ 累计死亡次数正确  —— deaths=80
+✅ 重置后敌人重新生成、状态可玩  —— {"particles":0,"proj":0,"corpses":0,"enemies":6,"state":"playing","playerAtSpawn":true}
+✅ 重置后玩家回到出生点附近  —— true
+✅ 重置清空了尸体  —— corpses=0
+✅ 重置清空了飞行物  —— proj=0
+✅ 页面已启动 __BOOT__  —— backdrop=true audio=true
+✅ 没有触发致命错误遮罩  —— fatal.style.display=
+✅ 游戏循环内无异常  —— 0 条
+✅ 页面无未捕获异常  —— 0 条
+
+—— run_death：19/19 通过，耗时 165.7s
+   结果文件：artifacts/results/run_death.json

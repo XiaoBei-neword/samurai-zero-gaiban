@@ -1,0 +1,134 @@
+{
+  "name": "run_death",
+  "passed": 19,
+  "failed": 0,
+  "total": 19,
+  "ok": true,
+  "durationMs": 165680,
+  "failures": [],
+  "rows": [
+    {
+      "ok": true,
+      "label": "页面里有 window.gc（可做公平的堆对比）",
+      "detail": "function"
+    },
+    {
+      "ok": true,
+      "label": "死亡次数统计准确（40 次）",
+      "detail": "40（期望 40 ±1）"
+    },
+    {
+      "ok": true,
+      "label": "每次死亡都恰好 +1（没有漏计/重复计）"
+    },
+    {
+      "ok": true,
+      "label": "重置延迟符合设计（约 2 秒「任务失败」后再重置）",
+      "detail": "2015.8999999985099（期望 2000 ±260）"
+    },
+    {
+      "ok": true,
+      "label": "重置延迟 P95 < 2.6s",
+      "detail": "p95=2018.4ms"
+    },
+    {
+      "ok": true,
+      "label": "40 次之后玩家仍然可操作",
+      "detail": "alive=true"
+    },
+    {
+      "ok": true,
+      "label": "重试不会跳到别的关卡",
+      "detail": "level=1"
+    },
+    {
+      "ok": true,
+      "label": "80 次死亡后堆内存没有明显增长（< 8MB）",
+      "detail": "0.23MB"
+    },
+    {
+      "ok": true,
+      "label": "粒子池没有爆掉",
+      "detail": "{\"alive\":0,\"persist\":0,\"max\":3200}"
+    },
+    {
+      "ok": true,
+      "label": "子弹池没有爆掉",
+      "detail": "{\"enemyBullets\":0,\"playerBullets\":0,\"thrown\":0,\"deflected\":0,\"total\":0}"
+    },
+    {
+      "ok": true,
+      "label": "累计死亡次数正确",
+      "detail": "deaths=80"
+    },
+    {
+      "ok": true,
+      "label": "重置后敌人重新生成、状态可玩",
+      "detail": "{\"particles\":0,\"proj\":0,\"corpses\":0,\"enemies\":6,\"state\":\"playing\",\"playerAtSpawn\":true}"
+    },
+    {
+      "ok": true,
+      "label": "重置后玩家回到出生点附近",
+      "detail": "true"
+    },
+    {
+      "ok": true,
+      "label": "重置清空了尸体",
+      "detail": "corpses=0"
+    },
+    {
+      "ok": true,
+      "label": "重置清空了飞行物",
+      "detail": "proj=0"
+    },
+    {
+      "ok": true,
+      "label": "页面已启动 __BOOT__",
+      "detail": "backdrop=true audio=true"
+    },
+    {
+      "ok": true,
+      "label": "没有触发致命错误遮罩",
+      "detail": "fatal.style.display="
+    },
+    {
+      "ok": true,
+      "label": "游戏循环内无异常",
+      "detail": "0 条"
+    },
+    {
+      "ok": true,
+      "label": "页面无未捕获异常",
+      "detail": "0 条"
+    }
+  ],
+  "resetLatency": {
+    "p50": 2015.8999999985099,
+    "p95": 2018.3999999985099,
+    "max": 2255.5,
+    "avg": 2016.2424999999814
+  },
+  "heap": {
+    "beforeMB": 2.7931013107299805,
+    "afterMB": 3.024521827697754,
+    "growthMB": 0.23142051696777344
+  },
+  "poolAfter": {
+    "particles": {
+      "alive": 0,
+      "persist": 0,
+      "max": 3200
+    },
+    "projectiles": {
+      "enemyBullets": 0,
+      "playerBullets": 0,
+      "thrown": 0,
+      "deflected": 0,
+      "total": 0
+    },
+    "enemies": 6,
+    "corpses": 0,
+    "decals": 0,
+    "fx": 0
+  }
+}

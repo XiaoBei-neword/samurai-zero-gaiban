@@ -1,0 +1,14 @@
+# 打包归档（发布时生成，不入库）
+*.zip
+
+# 依赖（本项目零依赖，此项仅作兜底）
+node_modules/
+
+# 运行时临时产物
+artifacts/tmp/
+
+# 编辑器 / 系统文件
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

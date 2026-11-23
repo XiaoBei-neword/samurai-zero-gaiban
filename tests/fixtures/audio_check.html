@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>AudioSys // 自检夹具</title>
+<style>
+  :root {
+    --bg: #05060b;
+    --panel: #0b0d17;
+    --line: #1c2740;
+    --cyan: #4ef0ff;
+    --magenta: #ff3d81;
+    --amber: #ffd166;
+    --text: #cfe7f2;
+    --dim: #6f8798;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    min-height: 100%;
+    background:
+      radial-gradient(1100px 500px at 18% -10%, rgba(78, 240, 255, 0.10), transparent 60%),
+      radial-gradient(900px 460px at 90% 0%, rgba(255, 61, 129, 0.10), transparent 60%),
+      var(--bg);
+    color: var(--text);
+    font-family: Consolas, "Cascadia Mono", "Microsoft YaHei", monospace;
+    font-size: 13px;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.022) 0 1px, transparent 1px 3px);
+    mix-blend-mode: screen;
+    opacity: 0.5;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 26px 22px 60px; position: relative; }
+  header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 14px; border-bottom: 1px solid var(--line); padding-bottom: 16px; }
+  h1 { margin: 0; font-size: 24px; letter-spacing: 0.18em; color: #fff; font-weight: 600; }
+  h1 .slash { color: var(--magenta); }
+  .sub { margin: 6px 0 0; color: var(--dim); letter-spacing: 0.06em; }
+  .badge {
+    border: 1px solid var(--line);
+    background: rgba(78, 240, 255, 0.05);
+    padding: 9px 13px;
+    color: var(--cyan);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    box-shadow: inset 0 0 18px rgba(78, 240, 255, 0.06);
+  }
+  .badge.bad { color: var(--magenta); border-color: rgba(255, 61, 129, 0.45); }
+  .badge.warn { color: var(--amber); border-color: rgba(255, 209, 102, 0.35); }
+  main { display: grid; grid-template-columns: 1.25fr 1fr; gap: 16px; margin-top: 18px; }
+  @media (max-width: 900px) { main { grid-template-columns: 1fr; } }
+  .panel {
+    border: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(16, 21, 38, 0.92), rgba(8, 10, 19, 0.94));
+    padding: 15px 15px 17px;
+    position: relative;
+  }
+  .panel::after {
+    content: "";
+    position: absolute;
+    top: -1px; left: 12px;
+    width: 44px; height: 2px;
+    background: var(--cyan);
+    box-shadow: 0 0 12px var(--cyan);
+  }
+  .panel h2 { margin: 0 0 12px; font-size: 12px; letter-spacing: 0.22em; color: var(--dim); text-transform: uppercase; font-weight: 600; }
+  .row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 9px; }
+  .row:last-child { margin-bottom: 0; }
+  button {
+    font: inherit;
+    color: var(--text);
+    background: #0d1424;
+    border: 1px solid #243757;
+    padding: 8px 11px;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+    transition: background 90ms linear, border-color 90ms linear, color 90ms linear, transform 90ms linear;
+  }
+  button:hover { background: #12253a; border-color: var(--cyan); color: #fff; }
+  button:active { transform: translateY(1px); }
+  button:focus-visible { outline: 1px solid var(--magenta); outline-offset: 2px; }
+  button.primary { border-color: rgba(78, 240, 255, 0.55); color: var(--cyan); }
+  button.hot { border-color: rgba(255, 61, 129, 0.55); color: var(--magenta); }
+  .sfx-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 7px; }
+  .sfx-grid button { text-align: left; padding: 8px 10px; }
+  .sfx-grid button .idx { color: var(--dim); font-size: 10px; margin-right: 7px; }
+  .sfx-grid button:hover .idx { color: var(--magenta); }
+  .meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 14px; margin-top: 13px; padding-top: 12px; border-top: 1px solid var(--line); }
+  .meta div { display: flex; justify-content: space-between; gap: 10px; color: var(--dim); }
+  .meta strong { color: var(--text); font-weight: 500; text-align: right; word-break: break-all; }
+  .log {
+    margin: 0;
+    max-height: 230px;
+    overflow: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    color: #9fb8c8;
+    line-height: 1.55;
+    font-size: 12px;
+  }
+  .log .ok { color: #79e6b0; }
+  .log .err { color: var(--magenta); }
+  .log .time { color: #526a7d; }
+  #mirror {
+    margin: 12px 0 0;
+    max-height: 260px;
+    overflow: auto;
+    padding: 12px;
+    background: #03050a;
+    border: 1px solid var(--line);
+    color: #8fb7c8;
+    font-size: 11px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+  .hint { color: var(--dim); line-height: 1.6; margin: 0 0 11px; }
+  .hint code { color: var(--cyan); }
+  a { color: var(--cyan); }
+  .range { display: flex; align-items: center; gap: 9px; color: var(--dim); }
+  input[type="range"] { width: 140px; accent-color: var(--magenta); }
+  .full { grid-column: 1 / -1; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>AUDIO<span class="slash">//</span>CHECK</h1>
+      <p class="sub">程序化合成 · 零采样 · Web Audio API · AudioSys 自检夹具</p>
+    </div>
+    <div id="status" class="badge">Booting…</div>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>System / 总线</h2>
+      <p class="hint">
+        手动模式直接点按钮；自动模式加载
+        <code>?auto=1</code>，由页面自己依次播放全部音效并跑音乐层测试，
+        结果写入 <code>window.__AUDIO_CHECK__</code>，完成后置
+        <code>window.__AUDIO_CHECK_DONE__ = true</code>。
+      </p>
+      <div class="row">
+        <button class="primary" data-act="init">init()</button>
+        <button class="primary" data-act="unlock">unlock()</button>
+        <button data-act="musicStart">musicStart()</button>
+        <button class="hot" data-act="musicStop">musicStop()</button>
+      </div>
+      <div class="row">
+        <button data-act="slow1">setSlow(1)</button>
+        <button data-act="slow05">setSlow(0.5)</button>
+        <button data-act="slow0">setSlow(0)</button>
+        <button data-act="combatOn">setCombat(true)</button>
+        <button data-act="combatOff">setCombat(false)</button>
+      </div>
+      <div class="row">
+        <label class="range">Master
+          <input id="volume" type="range" min="0" max="1" step="0.01" value="0.8">
+          <span id="volumeLabel">0.80</span>
+        </label>
+      </div>
+      <div id="meta" class="meta">
+        <div><span>ctx.state</span><strong id="mState">—</strong></div>
+        <div><span>ready</span><strong id="mReady">—</strong></div>
+        <div><span>activeNodes</span><strong id="mNodes">—</strong></div>
+        <div><span>maxNodes</span><strong id="mMaxNodes">—</strong></div>
+        <div><span>voiceCount</span><strong id="mVoice">—</strong></div>
+        <div><span>musicPlaying</span><strong id="mMusic">—</strong></div>
+        <div><span>tested</span><strong id="mTested">0 / 25</strong></div>
+        <div><span>errors</span><strong id="mErrors">0</strong></div>
+      </div>
+      <div class="row" style="margin-top:14px">
+        <a href="?auto=1">▶ 运行自动自检（?auto=1）</a>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>One-shots / 音效</h2>
+      <div id="sfxGrid" class="sfx-grid"></div>
+      <div class="row" style="margin-top:12px">
+        <button id="playAll" class="hot">play all (120ms)</button>
+        <button id="stopMusic">musicStop() + 静音</button>
+      </div>
+      <div class="row">
+        <small style="color:var(--dim);line-height:1.6">
+          每个按钮 = AudioSys.play(name, { pan, gain, pitch })。<br>
+          页面加载后先按任意键/点一下，浏览器才会允许出声。
+        </small>
+      </div>
+    </section>
+
+    <section class="panel full">
+      <h2>Trace / 日志</h2>
+      <pre id="log" class="log"></pre>
+      <h2 style="margin-top:16px">window.__AUDIO_CHECK__</h2>
+      <pre id="mirror">（等待自检）</pre>
+    </section>
+  </main>
+</div>
+
+<script>
+(() => {
+  'use strict';
+
+  const AUTO = new URLSearchParams(location.search).get('auto') === '1';
+  const check = window.__AUDIO_CHECK__ = {
+    ok: false,
+    tested: [],
+    errors: [],
+    activeNodes: 0,
+    steps: [],
+    done: false,
+    auto: AUTO,
+    moduleLoaded: false,
+    startedAt: Date.now(),
+    finishedAt: null,
+    durationMs: null,
+    playResults: {},
+    maxNodes: 0,
+    leakOk: false,
+    degraded: false,
+    stats: null,
+  };
+
+  function errText(value) {
+    if (value && typeof value.message === 'string') return value.message;
+    try { return String(value); } catch (_) { return 'unknown error'; }
+  }
+
+  window.__AUDIO_PUSH_ERROR__ = function pushError(message) {
+    const text = String(message == null ? 'unknown error' : message);
+    check.errors.push(text);
+    const status = document.getElementById('status');
+    if (status) {
+      status.textContent = 'ERROR · ' + text;
+      status.className = 'badge bad';
+    }
+  };
+
+  window.addEventListener('error', (event) => {
+    const target = event && event.target;
+    if (target && (target.src || target.href)) {
+      window.__AUDIO_PUSH_ERROR__('resource error: ' + (target.src || target.href));
+      return;
+    }
+    window.__AUDIO_PUSH_ERROR__('window.error: ' + (event && event.message ? event.message : 'unknown'));
+  });
+  window.addEventListener('unhandledrejection', (event) => {
+    const reason = event && event.reason;
+    window.__AUDIO_PUSH_ERROR__('unhandledrejection: ' + (reason && reason.message ? reason.message : reason));
+  });
+
+  // 模块加载失败时仍有兜底统计函数
+  window.__AUDIO_STATS__ = function __audioStatsFallback() {
+    return { ctxState: 'module-not-loaded', nodeCountEstimate: -1 };
+  };
+
+  // 自动模式看门狗：模块 404 / auto 卡死时也让外部自动化拿到终态
+  if (AUTO) {
+    setTimeout(() => {
+      if (window.__AUDIO_CHECK_DONE__) return;
+      if (!check.done) {
+        window.__AUDIO_PUSH_ERROR__('watchdog: auto run did not finish within 45s');
+        check.ok = false;
+        check.done = true;
+        window.__AUDIO_CHECK_DONE__ = true;
+        const mirror = document.getElementById('mirror');
+        if (mirror) mirror.textContent = JSON.stringify(check, null, 2);
+      }
+    }, 45000);
+  }
+})();
+</script>
+
+<script type="module">
+import { AudioSys } from '../../src/core/audio.js';
+
+const SFX_NAMES = [
+  'slash', 'slashHit', 'kill', 'gunshot', 'enemyShoot',
+  'dash', 'jump', 'doubleJump', 'land', 'wallSlide',
+  'pickup', 'throw', 'deflect', 'bulletRicochet', 'death',
+  'respawn', 'doorOpen', 'levelClear', 'victory', 'shieldBlock',
+  'empty', 'spikeDeath', 'slowIn', 'slowOut', 'uiClick',
+];
+
+const AUTO = new URLSearchParams(location.search).get('auto') === '1';
+const check = window.__AUDIO_CHECK__;
+check.moduleLoaded = true;
+// 调试句柄：外部自动化可以绕过按钮直接调用 API / 做多轮泄漏测试
+window.__AUDIO_SYS__ = AudioSys;
+window.__AUDIO_NAMES__ = SFX_NAMES.slice();
+
+const el = (id) => document.getElementById(id);
+const logEl = el('log');
+const mirrorEl = el('mirror');
+const statusEl = el('status');
+const startedAt = performance.now();
+
+let maxNodes = 0;
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function recordError(message) {
+  const text = String(message == null ? 'unknown error' : message);
+  check.errors.push(text);
+  const status = el('status');
+  if (status) {
+    status.textContent = 'ERROR · ' + text;
+    status.className = 'badge bad';
+  }
+  logLine('ERR ' + text, 'err');
+}
+
+function logLine(text, cls) {
+  const line = document.createElement('div');
+  if (cls) line.className = cls;
+  const t = (performance.now() - startedAt).toFixed(0).padStart(5, ' ');
+  line.textContent = '[' + t + 'ms] ' + text;
+  logEl.appendChild(line);
+  logEl.scrollTop = logEl.scrollHeight;
+}
+
+function sanitizeStats() {
+  try {
+    const s = AudioSys.getStats();
+    return {
+      ctxState: String(s.ctxState),
+      nodeCountEstimate: Number(s.nodeCountEstimate) || 0,
+      voiceCount: Number(s.voiceCount) || 0,
+      musicVoiceCount: Number(s.musicVoiceCount) || 0,
+      musicPlaying: !!s.musicPlaying,
+      droppedVoices: Number(s.droppedVoices) || 0,
+      totalPlays: Number(s.totalPlays) || 0,
+      slowAmount: Number(s.slowAmount) || 0,
+      combatOn: !!s.combatOn,
+      sampleRate: Number(s.sampleRate) || 0,
+      disabled: !!s.disabled,
+    };
+  } catch (err) {
+    recordError('getStats(): ' + (err && err.message ? err.message : err));
+    return { ctxState: 'unavailable', nodeCountEstimate: -1, voiceCount: 0, musicVoiceCount: 0, musicPlaying: false };
+  }
+}
+
+function readStats() {
+  return sanitizeStats();
+}
+
+window.__AUDIO_STATS__ = function __audioStats() {
+  const s = readStats();
+  return { ctxState: s.ctxState, nodeCountEstimate: s.nodeCountEstimate };
+};
+
+function syncUI() {
+  const s = readStats();
+  if (s.nodeCountEstimate > maxNodes) maxNodes = s.nodeCountEstimate;
+  check.activeNodes = Math.max(0, s.nodeCountEstimate);
+  check.maxNodes = maxNodes;
+  check.stats = s;
+
+  el('mState').textContent = s.ctxState;
+  el('mReady').textContent = String(AudioSys.ready);
+  el('mNodes').textContent = String(check.activeNodes);
+  el('mMaxNodes').textContent = String(maxNodes);
+  el('mVoice').textContent = String(s.voiceCount);
+  el('mMusic').textContent = String(s.musicPlaying);
+  el('mTested').textContent = check.tested.length + ' / ' + SFX_NAMES.length;
+  el('mErrors').textContent = String(check.errors.length);
+
+  if (check.errors.length > 0) {
+    statusEl.textContent = 'ERROR × ' + check.errors.length + ' · ' + s.ctxState;
+    statusEl.className = 'badge bad';
+  } else if (s.ctxState === 'running') {
+    statusEl.textContent = 'LIVE · ' + s.ctxState + ' · nodes ' + check.activeNodes;
+    statusEl.className = 'badge';
+  } else {
+    statusEl.textContent = s.ctxState.toUpperCase() + ' · nodes ' + check.activeNodes + ' · 待 unlock / 无输出设备';
+    statusEl.className = 'badge warn';
+  }
+}
+
+function syncMirror() {
+  mirrorEl.textContent = JSON.stringify(check, null, 2);
+}
+
+const sampler = setInterval(() => {
+  syncUI();
+}, 80);
+
+// 手动控件
+el('sfxGrid').addEventListener('click', (event) => {
+  const btn = event.target.closest && event.target.closest('button[data-sfx]');
+  if (!btn) return;
+  const name = btn.dataset.sfx;
+  try {
+    AudioSys.unlock();
+    const ok = AudioSys.play(name, { pan: 0, gain: 1, pitch: 0 });
+    logLine('play(' + name + ') -> ' + ok, ok ? 'ok' : '');
+  } catch (err) {
+    recordError('play(' + name + '): ' + (err && err.message ? err.message : err));
+  }
+  syncUI();
+});
+
+const actions = {
+  init: () => AudioSys.init(),
+  unlock: () => AudioSys.unlock(),
+  musicStart: () => AudioSys.musicStart(),
+  musicStop: () => AudioSys.musicStop(),
+  slow1: () => AudioSys.setSlow(1),
+  slow05: () => AudioSys.setSlow(0.5),
+  slow0: () => AudioSys.setSlow(0),
+  combatOn: () => AudioSys.setCombat(true),
+  combatOff: () => AudioSys.setCombat(false),
+};
+
+document.addEventListener('click', (event) => {
+  const btn = event.target.closest && event.target.closest('button[data-act]');
+  if (!btn) return;
+  const fn = actions[btn.dataset.act];
+  if (!fn) return;
+  try {
+    AudioSys.unlock();
+    fn();
+    logLine(btn.dataset.act + '() ok', 'ok');
+  } catch (err) {
+    recordError(btn.dataset.act + '(): ' + (err && err.message ? err.message : err));
+  }
+  syncUI();
+});
+
+el('volume').addEventListener('input', () => {
+  const v = Number(el('volume').value);
+  el('volumeLabel').textContent = v.toFixed(2);
+  try { AudioSys.setMasterVolume(v); } catch (err) { recordError('setMasterVolume(): ' + err.message); }
+});
+
+el('stopMusic').addEventListener('click', () => {
+  try {
+    AudioSys.musicStop();
+    AudioSys.setSlow(0);
+    AudioSys.setCombat(false);
+    logLine('musicStop() + reset slow/combat', 'ok');
+  } catch (err) {
+    recordError('musicStop(): ' + (err && err.message ? err.message : err));
+  }
+});
+
+el('playAll').addEventListener('click', () => {
+  (async () => {
+    for (const name of SFX_NAMES) {
+      try {
+        check.tested.push(name);
+        const ok = AudioSys.play(name, { pan: 0, gain: 1, pitch: 0 });
+        check.playResults[name] = ok === true;
+        logLine('play(' + name + ') -> ' + ok, ok ? 'ok' : '');
+      } catch (err) {
+        recordError('play(' + name + '): ' + (err && err.message ? err.message : err));
+      }
+      await sleep(120);
+    }
+    syncUI();
+  })();
+});
+
+// 首次手势解锁（自动模式下也调用，但 headless 用 autoplay flag）
+window.addEventListener('keydown', () => { try { AudioSys.unlock(); } catch (_) {} }, { passive: true });
+window.addEventListener('pointerdown', () => { try { AudioSys.unlock(); } catch (_) {} }, { passive: true });
+
+// 生成音效按钮
+const grid = el('sfxGrid');
+SFX_NAMES.forEach((name, i) => {
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.dataset.sfx = name;
+  const idx = document.createElement('span');
+  idx.className = 'idx';
+  idx.textContent = String(i + 1).padStart(2, '0');
+  btn.appendChild(idx);
+  btn.appendChild(document.createTextNode(name));
+  grid.appendChild(btn);
+});
+
+async function step(label, fn, waitMs) {
+  const before = readStats();
+  const entry = {
+    label,
+    ok: true,
+    nodesBefore: before.nodeCountEstimate,
+    atMs: Math.round(performance.now() - startedAt),
+    ctxState: before.ctxState,
+  };
+  let result;
+  try {
+    result = fn();
+    if (result && typeof result.then === 'function') result = await result;
+  } catch (err) {
+    entry.ok = false;
+    recordError(label + ': ' + (err && err.message ? err.message : err));
+  }
+  if (typeof result === 'boolean' || typeof result === 'number' || typeof result === 'string') {
+    entry.result = result;
+  }
+  check.steps.push(entry);
+  if (waitMs > 0) await sleep(waitMs);
+  const after = readStats();
+  entry.nodesAfter = after.nodeCountEstimate;
+  entry.ctxState = after.ctxState;
+  if (after.nodeCountEstimate > maxNodes) maxNodes = after.nodeCountEstimate;
+  check.activeNodes = Math.max(0, after.nodeCountEstimate);
+  check.maxNodes = maxNodes;
+  check.stats = after;
+  syncUI();
+  logLine(
+    (entry.ok ? 'OK  ' : 'ERR ') + label +
+      '  nodes ' + entry.nodesBefore + ' -> ' + entry.nodesAfter +
+      '  [' + after.ctxState + ']',
+    entry.ok ? 'ok' : 'err'
+  );
+  return entry;
+}
+
+async function runAuto() {
+  document.title = 'AudioSys // auto running';
+  logLine('auto run begin (25 sfx + music + leak)', 'ok');
+  try {
+    await step('init()', () => AudioSys.init(), 300);
+    check.degraded = !AudioSys.ready;
+    await step('ready', () => AudioSys.ready, 50);
+    await step('unlock()', () => AudioSys.unlock(), 300);
+
+    await step('play(unknown-name)', () => AudioSys.play('__definitely_not_a_sound__'), 20);
+    await step('api-fuzz', () => {
+      AudioSys.play('slash', null);
+      AudioSys.play('slash', { pan: 99, gain: 99, pitch: 100 });
+      AudioSys.setSlow('not-a-number');
+      AudioSys.setMasterVolume('not-a-number');
+      AudioSys.setCombat(0);
+      return 'no-throw';
+    }, 80);
+    // 回归默认值，避免 fuzz 影响后面的测量
+    AudioSys.setSlow(0);
+    AudioSys.setMasterVolume(0.8);
+    AudioSys.setCombat(false);
+
+    let i = 0;
+    for (const name of SFX_NAMES) {
+      const pan = ((i % 5) - 2) / 2;
+      const pitch = i % 9 === 0 ? 2 : 0;
+      await step('play:' + name, () => {
+        check.tested.push(name);
+        const ok = AudioSys.play(name, { pan, gain: 1, pitch });
+        check.playResults[name] = ok === true;
+        return ok;
+      }, 120);
+      i++;
+    }
+
+    // victory 尾巴 3.4s；等它和所有短音都自然结束
+    await sleep(3500);
+    check.nodesAfterSfx = readStats().nodeCountEstimate;
+
+    await step('musicStart()', () => AudioSys.musicStart(), 500);
+    await step('setSlow(1)', () => AudioSys.setSlow(1), 450);
+    await step('setSlow(0.4)', () => AudioSys.setSlow(0.4), 300);
+    await step('setSlow(0)', () => AudioSys.setSlow(0), 300);
+    await step('setCombat(true)', () => AudioSys.setCombat(true), 650);
+    await step('setCombat(false)', () => AudioSys.setCombat(false), 350);
+    await step('musicStart() idempotent', () => AudioSys.musicStart(), 200);
+    await step('musicStop()', () => AudioSys.musicStop(), 500);
+
+    await step('setMasterVolume(0.3)', () => AudioSys.setMasterVolume(0.3), 120);
+    await step('setMasterVolume(0.8)', () => AudioSys.setMasterVolume(0.8), 80);
+
+    // 同名节流 + 事件循环内连发（最坏情况）
+    await step('burst: kill ×5 same frame', () => {
+      for (let k = 0; k < 5; k++) AudioSys.play('kill', { pan: 0, gain: 1 });
+      return 5;
+    }, 250);
+    await step('burst: 60 mixed same frame', () => {
+      const names = ['kill', 'slashHit', 'gunshot', 'dash', 'uiClick'];
+      for (let k = 0; k < 60; k++) {
+        AudioSys.play(names[k % names.length], { pan: (k % 3) - 1, gain: 1 });
+      }
+      return 60;
+    }, 900);
+
+    // 连续多轮：25 个音效再各跑 2 轮，观察活跃节点是否持续增长
+    check.nodesBeforeRounds = readStats().nodeCountEstimate;
+    for (let round = 0; round < 2; round++) {
+      let i = 0;
+      for (const name of SFX_NAMES) {
+        AudioSys.play(name, { pan: ((i % 5) - 2) / 2, gain: 1, pitch: 0 });
+        i++;
+        await sleep(50);
+      }
+      await sleep(150);
+      const roundStats = readStats();
+      check['nodesAfterRound' + (round + 1)] = roundStats.nodeCountEstimate;
+      check.stats = roundStats;
+    }
+
+    // 等待 GC + AudioContext 时间推进（若被挂起，GC 也会按墙钟回收）
+    await sleep(4000);
+    const final = readStats();
+    check.nodesAfterBurst = final.nodeCountEstimate;
+    check.nodesFinal = final.nodeCountEstimate;
+    check.leakOk = final.nodeCountEstimate <= 12 && maxNodes <= 900;
+    check.ctxState = final.ctxState;
+    check.allPlayScheduled = Object.values(check.playResults).every(Boolean);
+    check.ok =
+      check.errors.length === 0 &&
+      check.tested.length === SFX_NAMES.length &&
+      check.leakOk &&
+      (check.degraded || check.allPlayScheduled);
+    check.done = true;
+    check.finishedAt = Date.now();
+    check.durationMs = Math.round(performance.now() - startedAt);
+    check.stats = final;
+    check.activeNodes = Math.max(0, final.nodeCountEstimate);
+    check.maxNodes = maxNodes;
+
+    clearInterval(sampler);
+    syncUI();
+    syncMirror();
+    document.title = check.ok ? 'AudioSys // PASS' : 'AudioSys // FAIL';
+    logLine(
+      'auto run done  ok=' + check.ok +
+        '  tested=' + check.tested.length +
+        '  finalNodes=' + final.nodeCountEstimate +
+        '  maxNodes=' + maxNodes +
+        '  state=' + final.ctxState,
+      check.ok ? 'ok' : 'err'
+    );
+  } catch (err) {
+    recordError('auto run crashed: ' + (err && err.message ? err.message : err));
+    check.ok = false;
+    check.done = true;
+    check.finishedAt = Date.now();
+    check.durationMs = Math.round(performance.now() - startedAt);
+    clearInterval(sampler);
+    syncUI();
+    syncMirror();
+    document.title = 'AudioSys // FAIL';
+  } finally {
+    window.__AUDIO_CHECK_DONE__ = true;
+    syncMirror();
+  }
+}
+
+if (AUTO) {
+  runAuto();
+} else {
+  logLine('manual mode · 点按钮，或打开 ?auto=1 自动跑', 'ok');
+  try { AudioSys.init(); } catch (err) { recordError('init(): ' + err.message); }
+  syncUI();
+  syncMirror();
+}
+
+// 手动模式下也要把实时状态写进 mirror，方便 dump-dom / 人眼
+setInterval(() => {
+  syncUI();
+  if (!check.done) syncMirror();
+}, 500);
+</script>
+</body>
+</html>

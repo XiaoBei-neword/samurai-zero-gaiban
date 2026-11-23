@@ -1,0 +1,10 @@
+{
+  "name": "samurai-zero-gaiban",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "2D 横版动作游戏（原生 JS + Canvas 2D + Web Audio，零依赖）",
+  "scripts": {
+    "start": "node server.mjs"
+  }
+}

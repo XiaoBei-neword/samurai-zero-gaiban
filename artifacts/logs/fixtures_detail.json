@@ -1,0 +1,571 @@
+{
+  "backdrop_level1": {
+    "ok": true,
+    "seeds": [
+      1337,
+      2049,
+      4242
+    ],
+    "drawMsAvg": 0.8966666666790843,
+    "buildMs": 32,
+    "layers": 6,
+    "drawMsLast": 0.8999999985098839,
+    "drawMsBurst": 0.42999999998137356,
+    "drawMsRaf": 0.8966666666790843,
+    "seed": 1337,
+    "width": 1920,
+    "camX": 600,
+    "slow": 0,
+    "flash": 0,
+    "framesMeasured": 60,
+    "auto": true,
+    "source": "raf",
+    "error": null,
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/158.0.0.0 Safari/537.36 Edg/158.0.0.0"
+  },
+  "backdrop_level2": {
+    "ok": true,
+    "seeds": [
+      1337,
+      2049,
+      4242
+    ],
+    "drawMsAvg": 0.6466666666790843,
+    "buildMs": 32,
+    "layers": 6,
+    "drawMsLast": 0.8000000007450581,
+    "drawMsBurst": 0.33250000001862645,
+    "drawMsRaf": 0.6466666666790843,
+    "seed": 2049,
+    "width": 2560,
+    "camX": 1280,
+    "slow": 0,
+    "flash": 0,
+    "framesMeasured": 60,
+    "auto": true,
+    "source": "raf",
+    "error": null,
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/158.0.0.0 Safari/537.36 Edg/158.0.0.0"
+  },
+  "backdrop_level3": {
+    "ok": true,
+    "seeds": [
+      1337,
+      2049,
+      4242
+    ],
+    "drawMsAvg": 0.7300000001986822,
+    "buildMs": 52.599999997764826,
+    "layers": 6,
+    "drawMsLast": 1.0999999977648258,
+    "drawMsBurst": 0.3650000000372529,
+    "drawMsRaf": 0.7300000001986822,
+    "seed": 4242,
+    "width": 2240,
+    "camX": 960,
+    "slow": 0,
+    "flash": 0,
+    "framesMeasured": 60,
+    "auto": true,
+    "source": "raf",
+    "error": null,
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/158.0.0.0 Safari/537.36 Edg/158.0.0.0"
+  },
+  "audioCheck": {
+    "ok": true,
+    "tested": [
+      "slash",
+      "slashHit",
+      "kill",
+      "gunshot",
+      "enemyShoot",
+      "dash",
+      "jump",
+      "doubleJump",
+      "land",
+      "wallSlide",
+      "pickup",
+      "throw",
+      "deflect",
+      "bulletRicochet",
+      "death",
+      "respawn",
+      "doorOpen",
+      "levelClear",
+      "victory",
+      "shieldBlock",
+      "empty",
+      "spikeDeath",
+      "slowIn",
+      "slowOut",
+      "uiClick"
+    ],
+    "errors": [],
+    "activeNodes": 0,
+    "steps": [
+      {
+        "label": "init()",
+        "ok": true,
+        "nodesBefore": 0,
+        "atMs": 9,
+        "ctxState": "running",
+        "nodesAfter": 0
+      },
+      {
+        "label": "ready",
+        "ok": true,
+        "nodesBefore": 0,
+        "atMs": 959,
+        "ctxState": "running",
+        "result": true,
+        "nodesAfter": 0
+      },
+      {
+        "label": "unlock()",
+        "ok": true,
+        "nodesBefore": 0,
+        "atMs": 1019,
+        "ctxState": "running",
+        "nodesAfter": 0
+      },
+      {
+        "label": "play(unknown-name)",
+        "ok": true,
+        "nodesBefore": 0,
+        "atMs": 1325,
+        "ctxState": "running",
+        "result": false,
+        "nodesAfter": 0
+      },
+      {
+        "label": "api-fuzz",
+        "ok": true,
+        "nodesBefore": 0,
+        "atMs": 1349,
+        "ctxState": "running",
+        "result": "no-throw",
+        "nodesAfter": 15
+      },
+      {
+        "label": "play:slash",
+        "ok": true,
+        "nodesBefore": 15,
+        "atMs": 1437,
+        "ctxState": "running",
+        "result": true,
+        "nodesAfter": 30
+      },
+      {
+        "label": "play:slashHit",
+        "ok": true,
+        "nodesBefore": 30,
+        "atMs": 1562,
+        "ctxState": "running",
+        "result": true,
+        "nodesAfter": 30
+      },
+      {
+        "label": "play:kill",
+        "ok": true,
+        "nodesBefore": 30,
+        "atMs": 1687,
+        "ctxState": "running",
+        "result": true,
+        "nodesAfter": 24
+      },
+      {
+        "label": "play:gunshot",
+        "ok": true,
+        "nodesBefore": 24,
+        "atMs": 1817,
+        "ctxState": "running",
+        "result": true,
+        "nodesAfter": 39
+      },
+      {
+        "label": "play:enemyShoot",
+        "ok": true,
+        "nodesBefore": 39,
+        "atMs": 1941,
+        "ctxState": "running",
+        "result": true,
+        "nodesAfter": 30
+      },
+      {
+        "label": "play:dash",
+        "ok": true,
+        "nodesBefore": 30,
+        "atMs": 2064,
+        "ctxState": "running",
+        "result": true,
+        "nodesAfter": 28
+      },
+      {
+        "label": "play:jump",
+        "ok": true,
+        "nodesBefore": 28,
+        "atMs": 2198,
+        "ctxState": "running",
+        "result": true,
+        "nodesAfter": 23
+      },
+      {
+        "label": "play:doubleJump",
+        "ok": true,
+        "nodesBefore": 23,
+        "atMs": 2327,
+        "ctxState": "running",
+        "result": true,
+        "nodesAfter": 12
+      },
+      {
+        "label": "play:land",
+        "ok": true,
+        "nodesBefore": 12,
+        "atMs": 2453,
+        "ctxState": "running",
+        "result": true,
+        "nodesAfter": 11
+      },
+      {
+        "label": "play:wallSlide",
+        "ok": true,
+        "nodesBefore": 11,
+        "atMs": 2577,
+        "ctxState": "running",
+        "result": true,
+        "nodesAfter": 10
+      },
+      {
+        "label": "play:pickup",
+        "ok": true,
+        "nodesBefore": 10,
+        "atMs": 2710,
+        "ctxState": "running",
+        "result": true,
+        "nodesAfter": 9
+      },
+      {
+        "label": "play:throw",
+        "ok": true,
+        "nodesBefore": 9,
+        "atMs": 2847,
+        "ctxState": "running",
+        "result": true,
+        "nodesAfter": 11
+      },
+      {
+        "label": "play:deflect",
+        "ok": true,
+        "nodesBefore": 11,
+        "atMs": 2972,
+        "ctxState": "running",
+        "result": true,
+        "nodesAfter": 16
+      },
+      {
+        "label": "play:bulletRicochet",
+        "ok": true,
+        "nodesBefore": 16,
+        "atMs": 3093,
+        "ctxState": "running",
+        "result": true,
+        "nodesAfter": 28
+      },
+      {
+        "label": "play:death",
+        "ok": true,
+        "nodesBefore": 28,
+        "atMs": 3218,
+        "ctxState": "running",
+        "result": true,
+        "nodesAfter": 17
+      },
+      {
+        "label": "play:respawn",
+        "ok": true,
+        "nodesBefore": 17,
+        "atMs": 3343,
+        "ctxState": "running",
+        "result": true,
+        "nodesAfter": 27
+      },
+      {
+        "label": "play:doorOpen",
+        "ok": true,
+        "nodesBefore": 27,
+        "atMs": 3467,
+        "ctxState": "running",
+        "result": true,
+        "nodesAfter": 14
+      },
+      {
+        "label": "play:levelClear",
+        "ok": true,
+        "nodesBefore": 14,
+        "atMs": 3598,
+        "ctxState": "running",
+        "result": true,
+        "nodesAfter": 35
+      },
+      {
+        "label": "play:victory",
+        "ok": true,
+        "nodesBefore": 35,
+        "atMs": 3721,
+        "ctxState": "running",
+        "result": true,
+        "nodesAfter": 74
+      },
+      {
+        "label": "play:shieldBlock",
+        "ok": true,
+        "nodesBefore": 74,
+        "atMs": 3845,
+        "ctxState": "running",
+        "result": true,
+        "nodesAfter": 89
+      },
+      {
+        "label": "play:empty",
+        "ok": true,
+        "nodesBefore": 89,
+        "atMs": 3976,
+        "ctxState": "running",
+        "result": true,
+        "nodesAfter": 60
+      },
+      {
+        "label": "play:spikeDeath",
+        "ok": true,
+        "nodesBefore": 60,
+        "atMs": 4106,
+        "ctxState": "running",
+        "result": true,
+        "nodesAfter": 74
+      },
+      {
+        "label": "play:slowIn",
+        "ok": true,
+        "nodesBefore": 74,
+        "atMs": 4237,
+        "ctxState": "running",
+        "result": true,
+        "nodesAfter": 85
+      },
+      {
+        "label": "play:slowOut",
+        "ok": true,
+        "nodesBefore": 85,
+        "atMs": 4360,
+        "ctxState": "running",
+        "result": true,
+        "nodesAfter": 60
+      },
+      {
+        "label": "play:uiClick",
+        "ok": true,
+        "nodesBefore": 60,
+        "atMs": 4492,
+        "ctxState": "running",
+        "result": true,
+        "nodesAfter": 60
+      },
+      {
+        "label": "musicStart()",
+        "ok": true,
+        "nodesBefore": 0,
+        "atMs": 8128,
+        "ctxState": "running",
+        "nodesAfter": 30
+      },
+      {
+        "label": "setSlow(1)",
+        "ok": true,
+        "nodesBefore": 30,
+        "atMs": 8651,
+        "ctxState": "running",
+        "nodesAfter": 35
+      },
+      {
+        "label": "setSlow(0.4)",
+        "ok": true,
+        "nodesBefore": 35,
+        "atMs": 9105,
+        "ctxState": "running",
+        "nodesAfter": 43
+      },
+      {
+        "label": "setSlow(0)",
+        "ok": true,
+        "nodesBefore": 43,
+        "atMs": 9412,
+        "ctxState": "running",
+        "nodesAfter": 18
+      },
+      {
+        "label": "setCombat(true)",
+        "ok": true,
+        "nodesBefore": 18,
+        "atMs": 9715,
+        "ctxState": "running",
+        "nodesAfter": 44
+      },
+      {
+        "label": "setCombat(false)",
+        "ok": true,
+        "nodesBefore": 44,
+        "atMs": 10382,
+        "ctxState": "running",
+        "nodesAfter": 39
+      },
+      {
+        "label": "musicStart() idempotent",
+        "ok": true,
+        "nodesBefore": 39,
+        "atMs": 10733,
+        "ctxState": "running",
+        "nodesAfter": 23
+      },
+      {
+        "label": "musicStop()",
+        "ok": true,
+        "nodesBefore": 23,
+        "atMs": 10949,
+        "ctxState": "running",
+        "nodesAfter": 0
+      },
+      {
+        "label": "setMasterVolume(0.3)",
+        "ok": true,
+        "nodesBefore": 0,
+        "atMs": 11453,
+        "ctxState": "running",
+        "nodesAfter": 0
+      },
+      {
+        "label": "setMasterVolume(0.8)",
+        "ok": true,
+        "nodesBefore": 0,
+        "atMs": 11575,
+        "ctxState": "running",
+        "nodesAfter": 0
+      },
+      {
+        "label": "burst: kill ×5 same frame",
+        "ok": true,
+        "nodesBefore": 0,
+        "atMs": 11669,
+        "ctxState": "running",
+        "result": 5,
+        "nodesAfter": 24
+      },
+      {
+        "label": "burst: 60 mixed same frame",
+        "ok": true,
+        "nodesBefore": 24,
+        "atMs": 11925,
+        "ctxState": "running",
+        "result": 60,
+        "nodesAfter": 0
+      }
+    ],
+    "done": true,
+    "auto": true,
+    "moduleLoaded": true,
+    "startedAt": 1795335373774,
+    "finishedAt": 1795335393855,
+    "durationMs": 19980,
+    "playResults": {
+      "slash": true,
+      "slashHit": true,
+      "kill": true,
+      "gunshot": true,
+      "enemyShoot": true,
+      "dash": true,
+      "jump": true,
+      "doubleJump": true,
+      "land": true,
+      "wallSlide": true,
+      "pickup": true,
+      "throw": true,
+      "deflect": true,
+      "bulletRicochet": true,
+      "death": true,
+      "respawn": true,
+      "doorOpen": true,
+      "levelClear": true,
+      "victory": true,
+      "shieldBlock": true,
+      "empty": true,
+      "spikeDeath": true,
+      "slowIn": true,
+      "slowOut": true,
+      "uiClick": true
+    },
+    "maxNodes": 150,
+    "leakOk": true,
+    "degraded": false,
+    "stats": {
+      "ctxState": "running",
+      "nodeCountEstimate": 0,
+      "voiceCount": 0,
+      "musicVoiceCount": 0,
+      "musicPlaying": false,
+      "droppedVoices": 0,
+      "totalPlays": 81,
+      "slowAmount": 0,
+      "combatOn": false,
+      "sampleRate": 48000,
+      "disabled": false
+    },
+    "nodesAfterSfx": 0,
+    "nodesBeforeRounds": 0,
+    "nodesAfterRound1": 81,
+    "nodesAfterRound2": 81,
+    "nodesAfterBurst": 0,
+    "nodesFinal": 0,
+    "ctxState": "running",
+    "allPlayScheduled": true
+  },
+  "audioLeak": {
+    "before": {
+      "ctxState": "running",
+      "nodeCountEstimate": 0
+    },
+    "after": {
+      "ctxState": "running",
+      "nodeCountEstimate": 0
+    },
+    "calls": 200
+  },
+  "audioStats": {
+    "ctxState": "running",
+    "nodeCountEstimate": 0
+  },
+  "backdrop": {
+    "ok": true,
+    "seeds": [
+      1337,
+      2049,
+      4242
+    ],
+    "drawMsAvg": 0.7849999998385707,
+    "buildMs": 34.30000000074506,
+    "layers": 6,
+    "drawMsLast": 0.5,
+    "drawMsBurst": 0.22499999990686775,
+    "drawMsRaf": 0.7849999998385707,
+    "seed": 1337,
+    "width": 1920,
+    "camX": 640,
+    "slow": 0,
+    "flash": 0,
+    "framesMeasured": 60,
+    "auto": true,
+    "source": "raf",
+    "error": null,
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/158.0.0.0 Safari/537.36 Edg/158.0.0.0"
+  },
+  "consoleErrors": []
+}

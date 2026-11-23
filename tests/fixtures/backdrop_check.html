@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Backdrop Check · 程序化视差霓虹夜城</title>
+<style>
+  html, body {
+    margin: 0; height: 100%; width: 100%;
+    background: #020106; overflow: hidden;
+    font-family: Consolas, "Cascadia Mono", "Courier New", monospace;
+  }
+  #wrap {
+    position: fixed; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: #020106;
+  }
+  /* 内部分辨率固定 1280x720，按 16:9 信箱式铺满窗口 */
+  #view {
+    display: block;
+    width: 100vw; height: 100vh;
+    object-fit: contain;
+    background: #020106;
+    image-rendering: auto;
+  }
+  #hud {
+    position: fixed; left: 14px; top: 12px; z-index: 10;
+    pointer-events: none; white-space: pre;
+    color: #a9e8ff; font-size: 12px; line-height: 1.62;
+    letter-spacing: 0.02em;
+    background: rgba(4, 4, 12, 0.5);
+    border-left: 2px solid #ff2e88;
+    padding: 8px 12px 9px;
+    text-shadow: 0 0 8px rgba(34, 224, 255, 0.45);
+  }
+  #hud b { color: #ff9cc6; font-weight: 600; }
+  #hud .title { color: #eaf7ff; letter-spacing: 0.12em; margin-bottom: 2px; }
+  #hud .dim { color: #7d90a8; }
+  #hud .warn { color: #ffd166; }
+  #hud .err { color: #ff6b81; white-space: pre-wrap; max-width: 900px; }
+</style>
+</head>
+<body>
+  <div id="wrap"><canvas id="view" width="1280" height="720"></canvas></div>
+  <div id="hud">BOOT…</div>
+
+  <script type="module">
+    // ============================================================
+    // backdrop_check.html —— src/core/backdrop.js 的夹具页
+    // * 3 个 seed 关卡（世界宽 1920 / 2560 / 2240）
+    // * 相机自动横向匀速移动；A/D 手动移动，Shift 加速
+    // * 左上角实时显示 draw 单帧毫秒数（performance.now 平均）与层数
+    // * ?auto=1&seed=1&cam=800 自动测帧并写 __BACKDROP_CHECK__ / __BACKDROP_CHECK_DONE__
+    // ============================================================
+    import { createBackdrop } from '../../src/core/backdrop.js';
+
+    const VIEW_W = 1280;
+    const VIEW_H = 720;
+
+    const LEVELS = [
+      { seed: 1337, width: 1920, alias: 1, name: '霓虹码头' },
+      { seed: 2049, width: 2560, alias: 2, name: '锈蚀中庭' },
+      { seed: 4242, width: 2240, alias: 3, name: '天台终局' },
+    ];
+
+    /** 既接受真实 seed（1337/2049/4242），也接受 1/2/3 关卡别名 */
+    function levelIndexFor(value) {
+      let i = LEVELS.findIndex((l) => l.seed === value);
+      if (i < 0) i = LEVELS.findIndex((l) => l.alias === value);
+      return i < 0 ? 0 : i;
+    }
+
+    const clamp = (v, a, b) => (v < a ? a : v > b ? b : v);
+    const clamp01 = (v) => clamp(Number.isFinite(v) ? v : 0, 0, 1);
+    const numParam = (name, fallback) => {
+      const raw = params.get(name);
+      if (raw === null || raw === '') return fallback;
+      const n = Number(raw);
+      return Number.isFinite(n) ? n : fallback;
+    };
+
+    const params = new URLSearchParams(location.search);
+    const auto = params.get('auto') === '1';
+    const autoSeed = numParam('seed', LEVELS[0].seed);
+    const autoTarget = clamp(Math.round(numParam('frames', 60)), 10, 600);
+    const hideHud = params.get('hud') === '0';
+
+    const canvas = document.getElementById('view');
+    const ctx = canvas.getContext('2d', { alpha: false });
+    ctx.imageSmoothingEnabled = true;
+    const hud = document.getElementById('hud');
+    if (hideHud) hud.style.display = 'none';
+
+    const state = {
+      levelIndex: 0,
+      backdrop: null,
+      buildMs: 0,
+      error: null,
+      camX: 0,
+      camY: clamp(numParam('y', 0), -200, 200),
+      camDir: 1,
+      time: 3.2,
+      slow: clamp01(numParam('slow', 0)),
+      flash: clamp01(numParam('flash', 0)),
+      keys: new Set(),
+      autoPan: !auto,
+      ring: new Float64Array(120),
+      ringIdx: 0,
+      ringFill: 0,
+      ringSum: 0,
+      lastMs: 0,
+      burstMs: 0,
+      rafMsSum: 0,
+      rafMsCount: 0,
+      autoFrames: 0,
+      autoDone: false,
+      fps: 0,
+      fpsFrames: 0,
+      fpsAt: 0,
+      frame: 0,
+    };
+
+    window.__BACKDROP_CHECK_DONE__ = false;
+
+    const maxCam = () => Math.max(0, LEVELS[state.levelIndex].width - VIEW_W);
+    const camRect = () => ({ x: state.camX, y: state.camY, w: VIEW_W, h: VIEW_H });
+    const drawOpts = () => ({ slow: state.slow, flash: state.flash });
+    const fmt = (v, d = 3) => (Number.isFinite(v) ? v.toFixed(d) : '—');
+
+    function addSample(ms) {
+      const i = state.ringIdx;
+      state.ringSum += ms - state.ring[i];
+      state.ring[i] = ms;
+      state.ringIdx = (i + 1) % state.ring.length;
+      if (state.ringFill < state.ring.length) state.ringFill++;
+      state.lastMs = ms;
+    }
+
+    function resetSamples() {
+      state.ring.fill(0);
+      state.ringIdx = 0;
+      state.ringFill = 0;
+      state.ringSum = 0;
+      state.lastMs = 0;
+    }
+
+    function ringAvg() {
+      return state.ringFill ? state.ringSum / state.ringFill : 0;
+    }
+
+    function updateHud() {
+      const lv = LEVELS[state.levelIndex];
+      const st = state.backdrop ? state.backdrop.stats() : null;
+      const avg = auto && state.rafMsCount > 0 ? state.rafMsSum / state.rafMsCount : ringAvg();
+      const lines = [];
+      lines.push('<span class="title">BACKDROP CHECK</span> <span class="dim">· 程序化视差霓虹夜城</span>');
+      lines.push(
+        'seed <b>' + lv.seed + '</b> · 世界 ' + lv.width + '×' + VIEW_H +
+        ' · 层数 <b>' + (st ? st.layers : '—') + '</b>' +
+        ' · 相机 ' + state.camX.toFixed(0) + ',' + state.camY.toFixed(0) + ' / ' + maxCam(),
+      );
+      lines.push(
+        'build <b>' + fmt(state.buildMs, 1) + ' ms</b>' +
+        ' · draw <b>' + fmt(avg, 3) + ' ms</b> <span class="dim">avg</span>' +
+        ' / ' + fmt(state.lastMs, 3) + ' ms <span class="dim">last</span>',
+      );
+      lines.push(
+        '<span class="dim">burst ' + fmt(state.burstMs, 3) + ' ms · ' +
+        (auto
+          ? (state.autoDone ? 'auto done' : 'auto ' + state.rafMsCount + '/' + autoTarget)
+          : state.fps + ' fps') +
+        ' · slow ' + state.slow.toFixed(2) + ' · flash ' + state.flash.toFixed(2) + '</span>',
+      );
+      lines.push('<span class="dim">1/2/3 切关 · A/D 移动 · Shift 加速</span>');
+      if (auto) {
+        lines.push(
+          '<span class="warn">auto seed=' + autoSeed + ' cam=' + state.camX.toFixed(0) +
+          ' · ' + (state.autoDone ? 'DONE' : state.rafMsCount + '/' + autoTarget) + '</span>',
+        );
+      }
+      if (state.error) {
+        lines.push('<span class="err">ERROR: ' + escapeHtml(String(state.error)) + '</span>');
+      }
+      hud.innerHTML = lines.join('\n');
+    }
+
+    function escapeHtml(s) {
+      return s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    }
+
+    function publish(source) {
+      const st = state.backdrop ? state.backdrop.stats() : null;
+      let avg;
+      if (source === 'raf' && state.rafMsCount > 0) avg = state.rafMsSum / state.rafMsCount;
+      else if (source === 'burst') avg = state.burstMs;
+      else avg = ringAvg() || state.burstMs;
+      const payload = {
+        ok: !state.error,
+        seeds: LEVELS.map((l) => l.seed),
+        drawMsAvg: avg,
+        buildMs: state.buildMs,
+        layers: st ? st.layers : 0,
+        drawMsLast: state.lastMs,
+        drawMsBurst: state.burstMs,
+        drawMsRaf: state.rafMsCount > 0 ? state.rafMsSum / state.rafMsCount : null,
+        seed: LEVELS[state.levelIndex].seed,
+        width: LEVELS[state.levelIndex].width,
+        camX: state.camX,
+        slow: state.slow,
+        flash: state.flash,
+        framesMeasured: state.rafMsCount,
+        auto: auto,
+        source: source,
+        error: state.error ? String(state.error && state.error.stack ? state.error.stack : state.error) : null,
+        ua: navigator.userAgent,
+      };
+      window.__BACKDROP_CHECK__ = payload;
+      document.title =
+        'BACKDROP seed=' + payload.seed + ' layers=' + payload.layers +
+        ' build=' + fmt(payload.buildMs, 1) + 'ms draw=' + fmt(payload.drawMsAvg, 3) + 'ms';
+      return payload;
+    }
+
+    function build(index, keepCam) {
+      const next = clamp(index | 0, 0, LEVELS.length - 1);
+      const prevCam = state.camX;
+      if (state.backdrop) {
+        state.backdrop.destroy();
+        state.backdrop = null;
+      }
+      state.levelIndex = next;
+      const lv = LEVELS[next];
+      try {
+        const t0 = performance.now();
+        state.backdrop = createBackdrop({ width: lv.width, height: VIEW_H, seed: lv.seed });
+        state.buildMs = performance.now() - t0;
+        state.error = null;
+      } catch (error) {
+        state.buildMs = 0;
+        state.error = error;
+        console.error('[backdrop_check] createBackdrop 失败：', error);
+      }
+      resetSamples();
+      state.camX = clamp(keepCam ? prevCam : state.camX, 0, maxCam());
+      state.camDir = 1;
+      state.burstMs = 0;
+      state.rafMsSum = 0;
+      state.rafMsCount = 0;
+      updateHud();
+    }
+
+    function drawOnce(time) {
+      if (!state.backdrop) return 0;
+      const t0 = performance.now();
+      state.backdrop.draw(ctx, camRect(), time === undefined ? state.time : time, drawOpts());
+      const ms = performance.now() - t0;
+      addSample(ms);
+      return ms;
+    }
+
+    /** 同步测一批（不依赖 rAF，便于 CLI 截图前的 HUD 读数） */
+    function burstDraws(n, warmup) {
+      if (!state.backdrop) return 0;
+      const warm = warmup === undefined ? 6 : warmup;
+      const count = Math.max(1, n | 0);
+      for (let i = 0; i < warm; i++) {
+        state.backdrop.draw(ctx, camRect(), state.time + i * 0.016, drawOpts());
+      }
+      let sum = 0;
+      for (let i = 0; i < count; i++) {
+        const t0 = performance.now();
+        state.backdrop.draw(ctx, camRect(), state.time + i * 0.016, drawOpts());
+        sum += performance.now() - t0;
+      }
+      return sum / count;
+    }
+
+    // ------------------------------------------------------------
+    // 相机
+    // ------------------------------------------------------------
+    function update(dt) {
+      const max = maxCam();
+      const shift = state.keys.has('ShiftLeft') || state.keys.has('ShiftRight');
+      const dir = (state.keys.has('KeyD') ? 1 : 0) - (state.keys.has('KeyA') ? 1 : 0);
+      if (dir !== 0) {
+        state.camX = clamp(state.camX + dir * 320 * (shift ? 3.2 : 1) * dt, 0, max);
+        state.camDir = dir;
+      } else if (state.autoPan) {
+        state.camX += state.camDir * 58 * dt;
+        if (state.camX >= max) {
+          state.camX = max;
+          state.camDir = -1;
+        } else if (state.camX <= 0) {
+          state.camX = 0;
+          state.camDir = 1;
+        }
+      }
+    }
+
+    // ------------------------------------------------------------
+    // 主循环
+    // ------------------------------------------------------------
+    let lastFrameAt = 0;
+
+    function frame(ts) {
+      if (!lastFrameAt) lastFrameAt = ts;
+      const dt = clamp((ts - lastFrameAt) / 1000, 0, 0.05);
+      lastFrameAt = ts;
+
+      update(dt);
+      state.time += dt;
+      drawOnce(state.time);
+
+      state.frame++;
+      state.fpsFrames++;
+      if (ts - state.fpsAt >= 500) {
+        state.fps = Math.round((state.fpsFrames * 1000) / (ts - state.fpsAt));
+        state.fpsFrames = 0;
+        state.fpsAt = ts;
+        publish('raf');
+        updateHud();
+      }
+      requestAnimationFrame(frame);
+    }
+
+    // ------------------------------------------------------------
+    // 自动测帧
+    // ------------------------------------------------------------
+    function autoFrame() {
+      if (!state.backdrop) {
+        window.__BACKDROP_CHECK_DONE__ = true;
+        return;
+      }
+      state.time += 1 / 60;
+      const t0 = performance.now();
+      state.backdrop.draw(ctx, camRect(), state.time, drawOpts());
+      const ms = performance.now() - t0;
+      state.rafMsSum += ms;
+      state.rafMsCount++;
+      state.lastMs = ms;
+      addSample(ms);
+
+      if (state.rafMsCount >= autoTarget) {
+        state.autoDone = true;
+        // 最后一帧固定在同一时间点，保证截图稳定
+        state.time = numParam('time', 3.2) + autoTarget / 60;
+        state.backdrop.draw(ctx, camRect(), state.time, drawOpts());
+        publish('raf');
+        updateHud();
+        window.__BACKDROP_CHECK_DONE__ = true;
+        // 保留一个空转 rAF，方便截图工具等待稳定帧（画布内容不再变化）
+        requestAnimationFrame(function hold() {
+          requestAnimationFrame(hold);
+        });
+        return;
+      }
+      if ((state.rafMsCount & 3) === 0) updateHud();
+      requestAnimationFrame(autoFrame);
+    }
+
+    function runAuto() {
+      const idx = levelIndexFor(autoSeed);
+      build(idx, false);
+      state.autoPan = false;
+      state.time = numParam('time', 3.2);
+      const camParam = params.get('cam');
+      state.camX = clamp(camParam === null ? maxCam() * 0.5 : numParam('cam', 0), 0, maxCam());
+
+      // 1) 同步 burst：页面 load 前就完成，CLI 截图 / dump-dom 也能读到真实数字
+      state.burstMs = burstDraws(40, 6);
+      state.backdrop.draw(ctx, camRect(), state.time, drawOpts());
+      publish('burst');
+      updateHud();
+
+      // 2) rAF 正式测帧（spec 要求的"渲染若干帧"），完成后置 DONE
+      requestAnimationFrame(autoFrame);
+    }
+
+    // ------------------------------------------------------------
+    // 输入
+    // ------------------------------------------------------------
+    window.addEventListener('keydown', (e) => {
+      if (['KeyA', 'KeyD', 'ShiftLeft', 'ShiftRight'].includes(e.code)) {
+        state.keys.add(e.code);
+        e.preventDefault();
+      }
+      if (!auto && ['Digit1', 'Digit2', 'Digit3'].includes(e.code)) {
+        build(['Digit1', 'Digit2', 'Digit3'].indexOf(e.code), false);
+        state.camX = 0;
+        drawOnce(state.time);
+        publish('api');
+        updateHud();
+      }
+    });
+    window.addEventListener('keyup', (e) => {
+      state.keys.delete(e.code);
+    });
+    window.addEventListener('blur', () => state.keys.clear());
+
+    window.addEventListener('error', (e) => {
+      state.error = e.error || e.message || 'unknown error';
+      updateHud();
+      publish('error');
+    });
+    window.addEventListener('unhandledrejection', (e) => {
+      state.error = e.reason || 'unhandled rejection';
+      updateHud();
+      publish('error');
+    });
+
+    // ------------------------------------------------------------
+    // 自动化接口（CDP 测试用）
+    // ------------------------------------------------------------
+    window.__BACKDROP_API__ = {
+      levels: LEVELS,
+      state,
+      camRect,
+      publish,
+      build,
+      drawOnce,
+      burstDraws,
+      setLevel(i) {
+        build(i, true);
+        drawOnce(state.time);
+        publish('api');
+        updateHud();
+      },
+      setCam(x) {
+        state.camX = clamp(Number(x) || 0, 0, maxCam());
+        drawOnce(state.time);
+        publish('api');
+        updateHud();
+      },
+      setSlow(v) {
+        state.slow = clamp01(Number(v) || 0);
+        drawOnce(state.time);
+        publish('api');
+        updateHud();
+      },
+      setFlash(v) {
+        state.flash = clamp01(Number(v) || 0);
+        drawOnce(state.time);
+        publish('api');
+        updateHud();
+      },
+      setTime(t) {
+        state.time = Number(t) || 0;
+        drawOnce(state.time);
+        publish('api');
+        updateHud();
+      },
+      measure(n = 60) {
+        const avg = burstDraws(n, 8);
+        state.burstMs = avg;
+        drawOnce(state.time);
+        publish('burst');
+        updateHud();
+        return avg;
+      },
+      stats() {
+        return state.backdrop ? state.backdrop.stats() : null;
+      },
+      result() {
+        return window.__BACKDROP_CHECK__;
+      },
+    };
+
+    // ------------------------------------------------------------
+    // 启动
+    // ------------------------------------------------------------
+    try {
+      if (auto) {
+        runAuto();
+      } else {
+        build(0, false);
+        const camParam = params.get('cam');
+        state.camX = clamp(camParam === null ? 0 : numParam('cam', 0), 0, maxCam());
+        state.time = numParam('time', 3.2);
+        drawOnce(state.time);
+        publish('init');
+        updateHud();
+        requestAnimationFrame((ts) => {
+          lastFrameAt = ts;
+          state.fpsAt = ts;
+          requestAnimationFrame(frame);
+        });
+      }
+    } catch (error) {
+      state.error = error;
+      updateHud();
+      publish('error');
+      console.error('[backdrop_check] 启动失败：', error);
+    }
+  </script>
+</body>
+</html>

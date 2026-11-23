@@ -1,0 +1,41 @@
+
+=== Pass A：真实规则（不加任何辅助）===
+   [A] ▸ 第 1 关「霓虹码头」  敌人=3  用时 0.5s
+   [A] ▸ 第 2 关「锈蚀中庭」  敌人=5  用时 6.2s
+   [A] ▸ 第 3 关「天台终局」  敌人=6  用时 14.5s
+   [A] ▸ 第 4 关「零号机房」  敌人=6  用时 22.8s
+   [A] ⚠ 卡住 30s：p=(1169,620) idle enemies=[ronin@1581:patrol gunner@1651:patrol shield@1941:patrol] kills=17
+   [A] ⚠ 卡住 30s：p=(1169,620) idle enemies=[ronin@1535:patrol gunner@1675:patrol shield@1945:patrol] kills=17
+   [A] ⚠ 卡住 30s：p=(1169,620) idle enemies=[ronin@1611:patrol gunner@1697:patrol shield@1949:patrol] kills=17
+   [A] ⚠ 卡住 30s：p=(1169,613) wall enemies=[ronin@1513:patrol gunner@1674:patrol shield@1942:patrol] kills=17
+   [A] 结果：到第 4 关，state=playing，kills=17，deaths=0，用时 165.3s
+✅ A：机器人真的打到并击杀了敌人  —— kills=17
+✅ A：不加辅助也能打过第 1 关  —— 到第 4 关
+   [A] 记录：未通关（到第 4 关，kills=17，deaths=0）
+
+=== Pass B：关卡流转链路（clearEnemies + 走进门，逐关验证）===
+✅ B：共有 4 关  —— count=4
+✅ B：第 1 关清版后门开启  —— 敌人 3 → 0，门 open=0.81
+✅ B：走进门后进入第 2 关（无缝切关）  —— level=2 state=playing
+✅ B：第 2 关清版后门开启  —— 敌人 5 → 0，门 open=0.93
+✅ B：走进门后进入第 3 关（无缝切关）  —— level=3 state=playing
+✅ B：第 3 关清版后门开启  —— 敌人 6 → 0，门 open=0.74
+✅ B：走进门后进入第 4 关（无缝切关）  —— level=4 state=playing
+✅ B：第 4 关清版后门开启  —— 敌人 6 → 0，门 open=0.74
+✅ B：打通最后一关后进入结算  —— state=victory level=4
+✅ B：最终处于结算状态  —— state=victory
+✅ B：停留在第 4 关  —— level=4
+✅ B：击杀数覆盖全部 20 个敌人（3+5+6+6）  —— kills=20
+✅ B：记录了通关总用时  —— 1.85s
+✅ B：通关时场上没有活着的敌人  —— alive=0
+   📷 artifacts/screenshots/flow_victory.png (453 KB)
+✅ B：结算面板数据源与统计一致  —— {"victory":true,"deaths":0,"kills":20,"runTime":1.85}
+✅ B：结算面板按 R 从头开始  —— level=1 state=playing
+✅ B：按 R 后统计清零  —— {"deaths":0,"kills":0,"runTime":0.8}
+✅ 页面已启动 __BOOT__  —— backdrop=true audio=true
+✅ 没有触发致命错误遮罩  —— fatal.style.display=
+✅ 游戏循环内无异常  —— 0 条
+✅ 页面无未捕获异常  —— 0 条
+
+—— run_flow：23/23 通过，耗时 173.9s
+   结果文件：artifacts/results/run_flow.json

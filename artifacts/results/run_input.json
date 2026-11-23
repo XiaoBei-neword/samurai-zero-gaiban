@@ -1,0 +1,305 @@
+{
+  "name": "run_input",
+  "passed": 58,
+  "failed": 0,
+  "total": 58,
+  "ok": true,
+  "durationMs": 46463,
+  "failures": [],
+  "rows": [
+    {
+      "ok": true,
+      "label": "A 键向左移动",
+      "detail": "vx=-173.3"
+    },
+    {
+      "ok": true,
+      "label": "← 键向左移动",
+      "detail": "vx=-130"
+    },
+    {
+      "ok": true,
+      "label": "D 键向右移动",
+      "detail": "vx=86.7"
+    },
+    {
+      "ok": true,
+      "label": "→ 键向右移动",
+      "detail": "vx=86.7"
+    },
+    {
+      "ok": true,
+      "label": "W 键起跳",
+      "detail": "跳起 162.9px"
+    },
+    {
+      "ok": true,
+      "label": "↑ 键起跳",
+      "detail": "跳起 162.7px"
+    },
+    {
+      "ok": true,
+      "label": "空格键起跳",
+      "detail": "跳起 162.8px"
+    },
+    {
+      "ok": true,
+      "label": "二段跳被触发（doubleJumpCount 增加）",
+      "detail": "doubleJumpCount +2"
+    },
+    {
+      "ok": true,
+      "label": "二段跳生效（高度有明显上升）",
+      "detail": "二段跳后离地 167.9px"
+    },
+    {
+      "ok": true,
+      "label": "Shift 触发冲刺",
+      "detail": "dashCount 0 → 1"
+    },
+    {
+      "ok": true,
+      "label": "冲刺无敌可以踩过地刺",
+      "detail": "deaths 0 → 0"
+    },
+    {
+      "ok": true,
+      "label": "冲刺无敌可以闪避子弹",
+      "detail": "带冲刺：deaths 1 → 1，alive=true"
+    },
+    {
+      "ok": true,
+      "label": "对照：同一发子弹不冲刺就会被打死（证明是冲刺救了你）",
+      "detail": "不冲刺：deaths 1 → 2"
+    },
+    {
+      "ok": true,
+      "label": "鼠标左键触发挥刀",
+      "detail": "slashCount 0 → 1"
+    },
+    {
+      "ok": true,
+      "label": "J 键触发挥刀",
+      "detail": "slashCount 1 → 2"
+    },
+    {
+      "ok": true,
+      "label": "键盘攻击朝角色朝向（正右）",
+      "detail": "angle=0"
+    },
+    {
+      "ok": true,
+      "label": "按住鼠标右键进入减缓",
+      "detail": "world=0.159"
+    },
+    {
+      "ok": true,
+      "label": "松开右键后时间恢复",
+      "detail": "world=0.997"
+    },
+    {
+      "ok": true,
+      "label": "K 键已经不再绑定任何动作",
+      "detail": "slashCount 2 → 2"
+    },
+    {
+      "ok": true,
+      "label": "减缓状态确实生效",
+      "detail": "world=0.176 player=0.602"
+    },
+    {
+      "ok": true,
+      "label": "世界时间缩放 = 0.15",
+      "detail": "0.17564587240892798（期望 0.15 ±0.03）"
+    },
+    {
+      "ok": true,
+      "label": "玩家时间缩放 = 0.60",
+      "detail": "0.6023791210644256（期望 0.6 ±0.03）"
+    },
+    {
+      "ok": true,
+      "label": "敌人移动变慢到 ≈0.15×",
+      "detail": "0.140×"
+    },
+    {
+      "ok": true,
+      "label": "敌人动画同样变慢到 ≈0.15×",
+      "detail": "0.154×"
+    },
+    {
+      "ok": true,
+      "label": "子弹变慢到 ≈0.15×",
+      "detail": "0.157×"
+    },
+    {
+      "ok": true,
+      "label": "玩家自身只减速到 ≈0.60×",
+      "detail": "0.607×"
+    },
+    {
+      "ok": true,
+      "label": "玩家动画同样只减速到 ≈0.60×",
+      "detail": "0.608×"
+    },
+    {
+      "ok": true,
+      "label": "玩家相对子弹的时间优势 ≈4 倍",
+      "detail": "3.88×"
+    },
+    {
+      "ok": true,
+      "label": "按住鼠标中键进入减缓",
+      "detail": "world=0.172"
+    },
+    {
+      "ok": true,
+      "label": "减缓会消耗能量",
+      "detail": "energy=86.7"
+    },
+    {
+      "ok": true,
+      "label": "L 键进入减缓",
+      "detail": "world=0.180"
+    },
+    {
+      "ok": true,
+      "label": "松开后时间恢复正常",
+      "detail": "world=0.999"
+    },
+    {
+      "ok": true,
+      "label": "能量不足时无法无限减缓（低于门槛不能进入减缓）",
+      "detail": "slow=false"
+    },
+    {
+      "ok": true,
+      "label": "场上有 12 发敌方子弹",
+      "detail": "{\"enemyBullets\":10,\"playerBullets\":0,\"thrown\":0,\"deflected\":0,\"total\":10}"
+    },
+    {
+      "ok": true,
+      "label": "一次挥刀反弹了大部分子弹",
+      "detail": "deflectCount 0 → 10（场上 10 发）"
+    },
+    {
+      "ok": true,
+      "label": "反弹过程中玩家没有被自己的子弹打死",
+      "detail": "alive=true"
+    },
+    {
+      "ok": true,
+      "label": "墙角冲刺 30 次后玩家仍然存活",
+      "detail": "alive=true"
+    },
+    {
+      "ok": true,
+      "label": "没有穿过左墙",
+      "detail": "最小 x=11.0"
+    },
+    {
+      "ok": true,
+      "label": "没有掉出地面",
+      "detail": "y=620"
+    },
+    {
+      "ok": true,
+      "label": "墙角冲刺没有产生异常",
+      "detail": "[]"
+    },
+    {
+      "ok": true,
+      "label": "对着墙连续攻击不报错、不自伤",
+      "detail": "alive=true kills=16"
+    },
+    {
+      "ok": true,
+      "label": "对墙攻击无异常",
+      "detail": "[]"
+    },
+    {
+      "ok": true,
+      "label": "死亡前确实处于减缓状态",
+      "detail": "world=0.203"
+    },
+    {
+      "ok": true,
+      "label": "死亡瞬间进入「任务失败」状态",
+      "detail": "state=death"
+    },
+    {
+      "ok": true,
+      "label": "减缓中死亡能正常重置",
+      "detail": "state=playing alive=true"
+    },
+    {
+      "ok": true,
+      "label": "重置后减缓状态被清除",
+      "detail": "slow=false"
+    },
+    {
+      "ok": true,
+      "label": "护盾兵已生成",
+      "detail": "{\"type\":\"shield\",\"x\":884,\"y\":620,\"state\":\"patrol\",\"facing\":-1,\"heard\":0,\"alive\":true}"
+    },
+    {
+      "ok": true,
+      "label": "正面近战被盾牌挡下（护盾兵没死）",
+      "detail": "存活=1 kills=21"
+    },
+    {
+      "ok": true,
+      "label": "绕到背后一刀击杀护盾兵",
+      "detail": "kills 21 → 22，剩余护盾兵 0"
+    },
+    {
+      "ok": true,
+      "label": "碰到地刺立即死亡",
+      "detail": "deaths 4 → 5 cause=spike"
+    },
+    {
+      "ok": true,
+      "label": "浪人已生成",
+      "detail": "{\"type\":\"ronin\",\"x\":1410,\"y\":620,\"state\":\"patrol\",\"facing\":1,\"heard\":0,\"alive\":true}"
+    },
+    {
+      "ok": true,
+      "label": "视野：站在浪人正面会被发现",
+      "detail": "state=windup facing=1"
+    },
+    {
+      "ok": true,
+      "label": "听觉：背后来一次跳跃的噪音被浪人听到（听觉范围生效）",
+      "detail": "jumpCount=6，heard 0 → 1.11，state=chase"
+    },
+    {
+      "ok": true,
+      "label": "FPS 数字是真实测量而非写死",
+      "detail": "实测 60.2 / 显示 60.0"
+    },
+    {
+      "ok": true,
+      "label": "页面已启动 __BOOT__",
+      "detail": "backdrop=true audio=true"
+    },
+    {
+      "ok": true,
+      "label": "没有触发致命错误遮罩",
+      "detail": "fatal.style.display="
+    },
+    {
+      "ok": true,
+      "label": "游戏循环内无异常",
+      "detail": "0 条"
+    },
+    {
+      "ok": true,
+      "label": "页面无未捕获异常",
+      "detail": "0 条"
+    }
+  ],
+  "fpsCheck": {
+    "measured": 60.21717670286279,
+    "reported": 59.98683321021343
+  }
+}

@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CDP Fixture #0</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #070912;
+    }
+
+    #stage {
+      display: block;
+      width: 1280px;
+      height: 720px;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="stage" width="1280" height="720" aria-label="CDP 自检画布"></canvas>
+
+  <script>
+    (() => {
+      'use strict';
+
+      const WIDTH = 1280;
+      const HEIGHT = 720;
+      const canvas = document.getElementById('stage');
+      const ctx = canvas.getContext('2d', { alpha: false });
+      if (!ctx) throw new Error('无法创建 2D canvas context');
+
+      // 供自检脚本读取的页面状态
+      window.__KEYS__ = [];
+      window.__KEYUPS__ = [];
+      window.__MOUSE__ = [];
+      window.__FPS__ = 0;
+      window.__FRAMES__ = 0;
+      window.__READY__ = false;
+
+      window.addEventListener(
+        'keydown',
+        (event) => {
+          window.__KEYS__.push(event.code);
+          if (event.code === 'Space' || event.code.startsWith('Arrow')) {
+            event.preventDefault();
+          }
+        },
+        { capture: true },
+      );
+
+      window.addEventListener(
+        'keyup',
+        (event) => {
+          window.__KEYUPS__.push(event.code);
+        },
+        { capture: true },
+      );
+
+      function recordMouse(event) {
+        window.__MOUSE__.push({
+          type: event.type,
+          button: event.button,
+          clientX: event.clientX,
+          clientY: event.clientY,
+          buttons: event.buttons,
+        });
+        // 阻止中键自动滚动/右键上下文菜单干扰自动化测试
+        event.preventDefault();
+      }
+
+      window.addEventListener('mousedown', recordMouse, { capture: true });
+      window.addEventListener('mouseup', recordMouse, { capture: true });
+      window.addEventListener('contextmenu', (event) => event.preventDefault(), { capture: true });
+
+      // 一次性生成带噪点的静态背景。噪点保证 PNG 截图有足够的信息量，
+      // 同时每帧只需要一次 drawImage，不会拖慢 rAF。
+      const background = document.createElement('canvas');
+      background.width = WIDTH;
+      background.height = HEIGHT;
+      const bg = background.getContext('2d', { alpha: false });
+
+      const image = bg.createImageData(WIDTH, HEIGHT);
+      const pixels = image.data;
+      let seed = 0x1a2b3c4d;
+      function nextRandom() {
+        seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+        return seed;
+      }
+
+      for (let y = 0; y < HEIGHT; y++) {
+        const row = y * WIDTH * 4;
+        for (let x = 0; x < WIDTH; x++) {
+          const i = row + x * 4;
+          const checker = ((x >> 5) + (y >> 5)) & 1;
+          const n = nextRandom();
+          pixels[i] = 8 + checker * 9 + (n & 0x0f);
+          pixels[i + 1] = 14 + checker * 12 + ((n >>> 4) & 0x0f);
+          pixels[i + 2] = 25 + checker * 18 + ((n >>> 8) & 0x1f);
+          pixels[i + 3] = 255;
+        }
+      }
+      bg.putImageData(image, 0, 0);
+
+      // 叠一些彩色斜带与网格，增加截图的视觉特征
+      for (let i = 0; i < 12; i++) {
+        bg.fillStyle = `hsla(${i * 31 + 190}, 85%, 60%, 0.11)`;
+        bg.beginPath();
+        bg.moveTo(i * 140 - 120, 0);
+        bg.lineTo(i * 140 + 70, 0);
+        bg.lineTo(i * 140 + 420, HEIGHT);
+        bg.lineTo(i * 140 + 230, HEIGHT);
+        bg.closePath();
+        bg.fill();
+      }
+      bg.strokeStyle = 'rgba(120, 220, 255, 0.13)';
+      bg.lineWidth = 1;
+      for (let x = 0; x <= WIDTH; x += 80) {
+        bg.beginPath();
+        bg.moveTo(x + 0.5, 0);
+        bg.lineTo(x + 0.5, HEIGHT);
+        bg.stroke();
+      }
+      for (let y = 0; y <= HEIGHT; y += 80) {
+        bg.beginPath();
+        bg.moveTo(0, y + 0.5);
+        bg.lineTo(WIDTH, y + 0.5);
+        bg.stroke();
+      }
+
+      const recentFrames = [];
+      let frames = 0;
+
+      function draw(now) {
+        frames += 1;
+        recentFrames.push(now);
+        while (recentFrames.length > 0 && now - recentFrames[0] > 1000) {
+          recentFrames.shift();
+        }
+
+        const fps = recentFrames.length;
+        window.__FRAMES__ = frames;
+        window.__FPS__ = fps;
+        window.__READY__ = true;
+
+        ctx.drawImage(background, 0, 0);
+
+        // 随帧计数移动、变色的方块
+        const squareSize = 148;
+        const travelX = WIDTH - squareSize - 120;
+        const phase = (frames * 7) % (travelX * 2);
+        const x = 60 + (phase <= travelX ? phase : travelX * 2 - phase);
+        const y = HEIGHT / 2 - squareSize / 2 + Math.sin(frames / 23) * 170;
+        const hue = (frames * 3) % 360;
+
+        ctx.save();
+        ctx.shadowColor = `hsla(${hue}, 100%, 65%, 0.9)`;
+        ctx.shadowBlur = 34;
+        ctx.fillStyle = `hsl(${hue}, 92%, 58%)`;
+        ctx.fillRect(x, y, squareSize, squareSize);
+        ctx.shadowBlur = 0;
+        ctx.lineWidth = 4;
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.88)';
+        ctx.strokeRect(x + 2, y + 2, squareSize - 4, squareSize - 4);
+
+        ctx.fillStyle = 'rgba(5, 10, 20, 0.9)';
+        ctx.font = '700 26px Consolas, monospace';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(`${frames}`, x + squareSize / 2, y + squareSize / 2 + 2);
+        ctx.restore();
+
+        // 页内 HUD
+        ctx.fillStyle = 'rgba(3, 8, 18, 0.72)';
+        ctx.fillRect(24, 24, 450, 122);
+        ctx.strokeStyle = 'rgba(96, 230, 255, 0.55)';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(24.5, 24.5, 449, 121);
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'alphabetic';
+        ctx.fillStyle = '#7df9ff';
+        ctx.font = '700 20px Consolas, monospace';
+        ctx.fillText('CDP FIXTURE / 1280x720', 44, 58);
+        ctx.fillStyle = '#f6fbff';
+        ctx.font = '16px Consolas, monospace';
+        ctx.fillText(`frame: ${frames}`, 44, 90);
+        ctx.fillText(`fps(1s): ${fps}`, 44, 116);
+        ctx.fillStyle = '#ffd166';
+        ctx.fillText(new Date().toISOString(), 44, 138);
+
+        // 明确把帧数写进标题，供 waitFor / 断言使用
+        document.title = `CDP Fixture #${frames}`;
+        requestAnimationFrame(draw);
+      }
+
+      requestAnimationFrame(draw);
+    })();
+  </script>
+</body>
+</html>

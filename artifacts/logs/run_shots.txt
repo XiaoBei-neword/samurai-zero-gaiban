@@ -1,0 +1,38 @@
+✅ 启动后直接进入第 1 关（无主菜单）  —— level=1 霓虹码头
+✅ 页面里没有任何菜单 DOM
+   📷 artifacts/screenshots/01_start.png (292 KB)
+✅ 按住 D 向右移动  —— x 130 → 242.08
+✅ 浪人发现玩家并进入战斗状态  —— ["ronin@692:chase","ronin@1101:patrol","gunner@1118:patrol"]
+   📷 artifacts/screenshots/03_enemy_aggro.png (290 KB)
+✅ 按住鼠标中键进入时间减缓  —— world=0.152 player=0.601
+✅ 世界时间缩放 ≈ 0.15  —— 0.15156781165061015（期望 0.15 ±0.02）
+✅ 玩家时间缩放 ≈ 0.60  —— 0.6007377937179342（期望 0.6 ±0.02）
+✅ 玩家相对时间优势 ≈ 4 倍  —— 3.9634918996042385（期望 4 ±0.3）
+✅ 敌方子弹在飞  —— {"enemyBullets":1,"playerBullets":0,"thrown":0,"deflected":0,"total":1}
+   📷 artifacts/screenshots/04_slowmo_bullet.png (420 KB)
+   📷 artifacts/screenshots/05_deflect.png (424 KB)
+✅ 近战把子弹反弹了回去（归属翻转）  —— {"enemyBullets":0,"playerBullets":1,"thrown":0,"deflected":1,"total":1}
+✅ 劈砍命中并击杀敌人  —— kills 0 → 1
+✅ 尸体留在场景里  —— corpses=1
+   📷 artifacts/screenshots/06_kill.png (296 KB)
+✅ 清版后门自动开启  —— cleared=true open=1
+   📷 artifacts/screenshots/07_door_open.png (307 KB)
+   📷 artifacts/screenshots/08_victory.png (453 KB)
+✅ 第 4 关后进入结算状态  —— {"deaths":0,"kills":10,"runTime":5.32}
+✅ 结算面板按 R 从头开始（统计清零、回到第 1 关）  —— {"level":1,"state":"playing","stats":{"deaths":0,"kills":0,"runTime":0.48}}
+✅ 死亡后进入「任务失败」状态（不立刻重生）  —— state=death
+   📷 artifacts/screenshots/09_death_fail.png (431 KB)
+✅ 「任务失败」约 2 秒后自动重置回可玩状态  —— state=playing deaths=1
+✅ ESC 暂停生效  —— paused=true
+   📷 artifacts/screenshots/09b_pause.png (421 KB)
+✅ 再按 ESC 继续游戏
+   📷 artifacts/screenshots/10_level2.png (308 KB)
+   📷 artifacts/screenshots/11_level3.png (311 KB)
+   📷 artifacts/screenshots/12_level4.png (333 KB)
+✅ 页面已启动 __BOOT__  —— backdrop=true audio=true
+✅ 没有触发致命错误遮罩  —— fatal.style.display=
+✅ 游戏循环内无异常  —— 0 条
+✅ 页面无未捕获异常  —— 0 条
+
+—— run_shots：23/23 通过，耗时 22.7s
+   结果文件：artifacts/results/run_shots.json
